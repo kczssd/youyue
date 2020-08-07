@@ -14,10 +14,15 @@
         },
         methods: {},
         computed: {},
-        mounted: function () {
+        created: function () {
             // 拿url上的姓名和电话
-            this.$store.commit('chName', '郑志宇');
-            this.$store.commit('chNum', '2019210054');
+            let token = decodeURIComponent(decodeURIComponent(window.location.href.split('t=')[1]));
+            localStorage.setItem('token_canteen_menu', token);
+            const parseToken = (token) => JSON.parse(decodeURIComponent(escape(atob(token.split('.')[0]))));
+            let infor = parseToken(token);
+            console.log(infor);
+            this.$store.commit('chName', infor.realName);
+            this.$store.commit('chNum', infor.stuNum);
         },
     };
 </script>

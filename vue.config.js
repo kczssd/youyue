@@ -1,5 +1,14 @@
 const pxtoviewport = require('postcss-px-to-viewport')
 const proxy = require('http-proxy-middleware');
+var devEnv = require('./config/dev.env');
+var proEnv = require('./config/pro.env');
+const env = process.env.NODE_ENV;
+let target;
+if (env === 'production') {  // 生产环境
+    target = proEnv.proxy;
+} else {  // 本地环境
+    target = devEnv.proxy;
+}
 module.exports = {
     css: {
         loaderOptions: {
@@ -25,23 +34,6 @@ module.exports = {
         }
     },
     devServer: {
-        proxy: {
-            '/domain': {
-                target: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter',
-                changeOrigin: true,
-                secure: false,
-                pathRewrite: {
-                    '^/domain': '/'
-                }
-            },
-            '/redomain': {
-                target: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply',
-                changeOrigin: true,
-                secure: false,
-                pathRewrite: {
-                    '^/redomain': '/'
-                }
-            }
-        }
+        proxy: target,
     }
 }
