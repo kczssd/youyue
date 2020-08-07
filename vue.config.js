@@ -1,6 +1,8 @@
 const pxtoviewport = require('postcss-px-to-viewport')
 const proxy = require('http-proxy-middleware');
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? '/game/youyue/' : '/',
+    outputDir: 'build',
     css: {
         loaderOptions: {
             postcss: {
