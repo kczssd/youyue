@@ -17,9 +17,9 @@
         },
         methods: {},
         computed: {},
-        created: function () {
+        beforeMount: function () {
             // 拿url上的姓名和电话
-            let token = location.href.split('&')[2].slice(2);
+            let token = decodeURIComponent(location.href.split('&')[0].split('?t=')[1]);
             this.token = token
             localStorage.setItem('young-youyue-token', token);
             const parseToken = (token) => JSON.parse(decodeURIComponent(escape(atob(token.split('.')[0]))));
