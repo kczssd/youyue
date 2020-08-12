@@ -19,7 +19,7 @@
         computed: {},
         created: function () {
             // 拿url上的姓名和电话
-            let token = location.hash.split('&')[2].slice(2);
+            let token = location.href.split('&')[2].slice(2);
             this.token = token
             localStorage.setItem('young-youyue-token', token);
             const parseToken = (token) => JSON.parse(decodeURIComponent(escape(atob(token.split('.')[0]))));
