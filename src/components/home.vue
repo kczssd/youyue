@@ -1,7 +1,7 @@
 <template>
     <div v-if="difList!=undefined" class="homepage">
         <header id="choose">
-            <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择？</span>
+            <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择</span>
             <span class="yibao" @click="titleactive=false;" :id="!titleactive?'font1b':null">已报部门</span>
             <img :src="active" :id="titleactive?'hu1':'hu2'" />
         </header>
