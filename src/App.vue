@@ -4,20 +4,23 @@
             <router-link to="/">Home</router-link>|
             <router-link to="/infor">Infor</router-link>
         </div>-->
+        <div>{{ token }}</div>
         <router-view />
     </div>
 </template>
 <script>
     export default {
         data() {
-            return {};
+            return {
+              token: '',
+            };
         },
         methods: {},
         computed: {},
         created: function () {
             // 拿url上的姓名和电话
             let token = location.hash.split('&')[2].slice(2);
-            alert(token)
+            this.token = token
             localStorage.setItem('young-youyue-token', token);
             const parseToken = (token) => JSON.parse(decodeURIComponent(escape(atob(token.split('.')[0]))));
             let infor = parseToken(token);
