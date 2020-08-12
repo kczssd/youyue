@@ -11,7 +11,24 @@
                     :index="items.id"
                 >
                     {{items.name}}
-                    <img id="hu" :src="active" v-if="titleactive==index" />
+                    <!-- <img id="hu" :src="active" v-if="titleactive==index" /> -->
+                    <svg
+                        id="hu"
+                        :src="active"
+                        v-if="titleactive==index"
+                        width="26"
+                        height="9"
+                        viewBox="0 0 26 9"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M24 2C21.0826 5.20145 17.1258 7 13 7C8.8742 7 4.91738 5.20145 2 2"
+                            stroke="#817BF9"
+                            stroke-width="4"
+                            stroke-linecap="round"
+                        />
+                    </svg>
                 </li>
             </ul>
         </header>
@@ -41,7 +58,6 @@
                     { id: 5, name: '', detail: '', avatar: '/' },
                 ],
                 titleactive: 0,
-                active: require('@/assets/img/active.png'),
             };
         },
         methods: {

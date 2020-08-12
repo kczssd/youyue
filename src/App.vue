@@ -12,7 +12,7 @@
     export default {
         data() {
             return {
-              token: 'meile',
+                token: 'meile',
             };
         },
         methods: {},
@@ -20,7 +20,7 @@
         beforeMount: function () {
             // 拿url上的姓名和电话
             let token = decodeURIComponent(location.href.split('&')[0].split('?t=')[1]).replace(/ /g, '+');
-            this.token = token
+            this.token = token;
             localStorage.setItem('young-youyue-token', token);
             const parseToken = (token) => JSON.parse(decodeURIComponent(escape(atob(token.split('.')[0]))));
             let infor = parseToken(token);

@@ -3,7 +3,23 @@
         <header id="choose">
             <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择</span>
             <span class="yibao" @click="titleactive=false;" :id="!titleactive?'font1b':null">已报部门</span>
-            <img :src="active" :id="titleactive?'hu1':'hu2'" />
+            <!-- <img :src="active" :id="titleactive?'hu1':'hu2'" /> -->
+            <svg
+                :src="active"
+                :id="titleactive?'hu1':'hu2'"
+                width="26"
+                height="9"
+                viewBox="0 0 26 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M24 2C21.0826 5.20145 17.1258 7 13 7C8.8742 7 4.91738 5.20145 2 2"
+                    stroke="#817BF9"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                />
+            </svg>
         </header>
         <main id="diffences" v-show="titleactive">
             <ul>
@@ -57,7 +73,6 @@
                     // { id: 1, name: '产品运营及策划部', detail: '守护全世界最好的Web研发部', avatar: '/', state: 0, new: 0 },
                     // { id: 2, name: 'Web研发部', detail: '守护全世界最好的Web研发部', avatar: '/', state: 1, new: 1 },
                 ],
-                active: require('@/assets/img/active.png'),
                 point: require('@/assets/img/point.png'),
                 titleactive: true,
             };
