@@ -220,9 +220,9 @@
     letter-spacing: 0.03em;
 }
 .stylebutton {
-    position: absolute;
+    /* position: absolute;
     bottom: 68px;
-    left: 98px;
+    left: 98px; */
     width: 180px;
     height: 44px;
     background: #625af8;
@@ -396,6 +396,16 @@
 #confirmDepart {
     position: absolute;
     bottom: 20px;
+    left: 98px;
+}
+#confirmMyInfor {
+    position: fixed;
+    top: 497px;
+    left: 98px;
+}
+#changeMyInfor {
+    position: fixed;
+    top: 497px;
     left: 98px;
 }
 </style>

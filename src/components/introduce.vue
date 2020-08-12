@@ -163,8 +163,8 @@
     top: 248px;
 }
 .signin {
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    top: 539px;
     left: 98px;
     width: 180px;
     height: 44px;
