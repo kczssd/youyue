@@ -10,7 +10,7 @@ if (env === 'production') {  // 生产环境
     target = devEnv.proxy;
 }
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'development' ? '/game/youyue/' : '/',
+    publicPath: process.env.NODE_ENV !== 'development' ? '/game/youyue/' : '/',
     outputDir: 'build',
     indexPath: 'index.html',
     css: {
