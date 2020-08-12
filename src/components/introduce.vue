@@ -14,7 +14,6 @@
                     <!-- <img id="hu" :src="active" v-if="titleactive==index" /> -->
                     <svg
                         id="hu"
-                        :src="active"
                         v-if="titleactive==index"
                         width="26"
                         height="9"
@@ -52,10 +51,6 @@
                 difdepartsList: [
                     //  组织的部门信息
                     { id: 1, name: '', detail: '', avatar: '/' },
-                    { id: 2, name: '', detail: '', avatar: '/' },
-                    { id: 3, name: '', detail: '', avatar: '/' },
-                    { id: 4, name: '', detail: '', avatar: '/' },
-                    { id: 5, name: '', detail: '', avatar: '/' },
                 ],
                 titleactive: 0,
             };
@@ -90,7 +85,13 @@
             }); //获取组织的部门信息
             getJSON(req).then(function (resolve) {
                 let data = resolve.data;
-                _this.difdepartsList = data;
+                let nowdifList = new Array();
+                try {
+                    Array.isArray(data) ? (nowdifList = data) : nowdifList.push(data);
+                } catch (e) {
+                    console.log(e);
+                }
+                _this.difdepartsList = nowdifList;
             });
         },
     };

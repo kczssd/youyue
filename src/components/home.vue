@@ -4,15 +4,7 @@
             <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择</span>
             <span class="yibao" @click="titleactive=false;" :id="!titleactive?'font1b':null">已报部门</span>
             <!-- <img :src="active" :id="titleactive?'hu1':'hu2'" /> -->
-            <svg
-                :src="active"
-                :id="titleactive?'hu1':'hu2'"
-                width="26"
-                height="9"
-                viewBox="0 0 26 9"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg :id="titleactive?'hu1':'hu2'" width="26" height="9" viewBox="0 0 26 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M24 2C21.0826 5.20145 17.1258 7 13 7C8.8742 7 4.91738 5.20145 2 2"
                     stroke="#817BF9"

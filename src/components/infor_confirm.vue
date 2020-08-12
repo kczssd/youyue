@@ -211,7 +211,7 @@
             getJSON(req).then(function (resolve) {
                 let data = resolve.data;
                 data.forEach((item) => {
-                    _this.departList.push({ id: item.id, name: item.name.split('—')[1], ischoose: false }); //组织id
+                    _this.departList.push({ id: item.id, name: item.name.match('—') ? item.name.split('—')[1] : item.name, ischoose: false }); //组织id
                 });
             });
         },
