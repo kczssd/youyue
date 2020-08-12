@@ -88,8 +88,6 @@
                 inforList: this.$store.state.inforList,
                 nowChosen: [],
                 nowphone: '',
-                haschoose: require('@/assets/img/haschoose.png'),
-                nochoose: require('@/assets/img/nochoose.png'),
                 unionblack: require('@/assets/img/unionblack.png'),
                 close: require('@/assets/img/close.png'),
             };

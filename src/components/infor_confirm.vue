@@ -43,7 +43,36 @@
                 <ul id="coul">
                     <li class="department" v-for="(items,index) in departList" :id="'department'+index">
                         {{items.name}}
-                        <img @click="chChoose(index)" :src="items.ischoose?haschoose:nochoose" />
+                        <!-- <img @click="chChoose(index)" :src="items.ischoose?haschoose:nochoose" /> -->
+                        <svg
+                            @click="chChoose(index)"
+                            v-if="items.ischoose"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#625AF8" stroke="#625AF8" />
+                            <path
+                                d="M6 10.5L9 13.5L14.5 8"
+                                stroke="white"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                        <svg
+                            @click="chChoose(index)"
+                            v-else
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#A4A3B7" />
+                        </svg>
                     </li>
                 </ul>
                 <img @click="chClose" id="close" :src="close" alt />
@@ -92,8 +121,6 @@
                     // { id: 4, name: 'Web研发部', ischoose: false },
                     // { id: 5, name: '运维安全部', ischoose: false },
                 ],
-                haschoose: require('@/assets/img/haschoose.png'),
-                nochoose: require('@/assets/img/nochoose.png'),
                 union: require('@/assets/img/union.png'),
                 close: require('@/assets/img/close.png'),
             };
