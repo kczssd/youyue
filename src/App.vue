@@ -16,7 +16,8 @@
         computed: {},
         created: function () {
             // 拿url上的姓名和电话
-            let token = decodeURIComponent(window.location.href.split('t=')[1]);
+            let token = location.hash.split('&')[2].slice(2);
+            console.log(token)
             if (token == 'undefined') {
                 console.log('token不存在');
                 token =
