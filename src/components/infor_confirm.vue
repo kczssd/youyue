@@ -16,6 +16,7 @@
                         id="contentPhone"
                         class="chfont font1"
                         type="text"
+                        @blur="isempty"
                         @keyup="chphone(nowphone)"
                         v-model="nowphone"
                         oninput="value=value.replace(/[^\d]/g,'')"
@@ -33,7 +34,7 @@
                 </div>
             </div>
             <!-- 选择部门 -->
-            <button id="confirmMyInfor" @click="chCover" class="stylebutton">确认提交</button>
+            <button id="confirmMyInfor" @click="chCover" :class="style">确认提交</button>
             <!-- 蒙版 -->
             <div class="cover" v-show="iscover"></div>
             <div class="departments font4" :class="isconfirm?'show':null">
@@ -46,7 +47,7 @@
                     </li>
                 </ul>
                 <img @click="chClose" id="close" :src="close" alt />
-                <button @click="chConfirm" id="confirmDepart" class="stylebutton">确认提交</button>
+                <button @click="chConfirm" id="confirmDepart" :class="style">确认提交</button>
             </div>
             <div class="confirm" :class="!isconfirm&&iscover?'show':null">
                 <div id="cotitle">信息核对</div>
@@ -64,7 +65,7 @@
                 </ul>
                 <img @click="chClose" id="close" :src="close" />
                 <!-- 手动跳转 -->
-                <button @click="chosenList" id="confirmDepart" class="stylebutton">确认提交</button>
+                <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
             </div>
         </div>
     </div>
@@ -82,7 +83,7 @@
                 isconfirm: false,
                 inforList: this.$store.state.inforList,
                 nowChosen: [],
-                nowphone: undefined,
+                nowphone: '',
                 departList: [
                     //组织部门列表
                     // { id: 1, name: '产品运营及策划部', ischoose: false },
@@ -112,16 +113,20 @@
                     document.querySelector('#contentPhone').focus();
                 }, 100);
             },
+            isempty() {
+                if (this.nowphone.length == 0) {
+                    this.isphone = !this.isphone;
+                }
+            },
             chAll() {
                 this.iscover = !this.iscover;
                 this.isconfirm = !this.isconfirm;
             },
             chConfirm() {
-                // if (this.inforList[2].data != undefined)
                 this.isconfirm = !this.isconfirm;
             },
             chCover() {
-                if (this.nowChosen.length != 0 && this.inforList[2].data != undefined) this.iscover = !this.iscover;
+                if (this.nowChosen.length != 0 && this.nowphone.length == 11) this.iscover = !this.iscover;
             },
             chClose() {
                 this.iscover = false;
@@ -137,9 +142,7 @@
                     if (this.nowphone.length == 11) {
                         return this.sendJSON(nowArray, this.nowphone);
                     }
-                } catch (e) {
-                    console.log(e);
-                }
+                } catch (e) {}
             },
             sendJSON(array, phone) {
                 fetch(betitle.re + '/team/apply/register', {
@@ -158,7 +161,11 @@
                     }); //若提交成功则返回报名成功页
             },
         },
-        computed: {},
+        computed: {
+            style: function () {
+                return this.nowphone.length != 11 || this.nowChosen.length == 0 ? 'styleDis' : 'stylebutton';
+            },
+        },
         mounted: function () {
             let _this = this;
             async function getJSON(req) {
@@ -177,7 +184,7 @@
             getJSON(req).then(function (resolve) {
                 let data = resolve.data;
                 data.forEach((item) => {
-                    _this.departList.push({ id: item.id, name: item.name, ischoose: false }); //组织id
+                    _this.departList.push({ id: item.id, name: item.name.split('—')[1], ischoose: false }); //组织id
                 });
             });
         },

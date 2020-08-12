@@ -31,6 +31,7 @@
                         id="contentPhone"
                         class="chfont font1"
                         type="text"
+                        @blur="isempty"
                         @keyup="chphone(nowphone)"
                         v-model="nowphone"
                         oninput="value=value.replace(/[^\d]/g,'')"
@@ -47,7 +48,7 @@
                 </div>
             </div>
             <!-- 选择部门 -->
-            <button id="confirmMyInfor" @click="chCover" class="stylebutton">确认提交</button>
+            <button id="confirmMyInfor" @click="chCover" :class="style">确认提交</button>
             <!-- 蒙版 -->
             <div class="cover" v-show="iscover"></div>
             <!--  -->
@@ -67,7 +68,7 @@
                 </ul>
                 <img @click="chClose" id="close" :src="close" />
                 <!-- 手动跳转 -->
-                <button @click="chosenList" id="confirmDepart" class="stylebutton">确认提交</button>
+                <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
             </div>
         </div>
     </div>
@@ -100,9 +101,13 @@
                     document.querySelector('#contentPhone').focus();
                 }, 100);
             },
+            isempty() {
+                if (this.nowphone.length == 0) {
+                    this.isphone = !this.isphone;
+                }
+            },
             chCover() {
-                // if (this.inforList[2].data != undefined)
-                this.iscover = !this.iscover;
+                if (this.nowphone.length == 11) this.iscover = !this.iscover;
             },
             chClose() {
                 this.iscover = false;
@@ -129,7 +134,11 @@
                     }); //信息修改成功返回首页
             },
         },
-        computed: {},
+        computed: {
+            style: function () {
+                return this.nowphone.length != 11 ? 'styleDis' : 'stylebutton';
+            },
+        },
         mounted: function () {
             let _this = this;
             async function getJSON(req) {
@@ -390,13 +399,27 @@
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-#department4 {
-    border: none;
-}
 #confirmDepart {
     position: absolute;
     bottom: 20px;
     left: 98px;
+}
+#lastconfirm {
+    position: absolute;
+    bottom: 20px;
+    left: 98px;
+}
+.styleDis {
+    width: 180px;
+    height: 44px;
+    background-color: #cecde8;
+    border-radius: 32px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    color: #ffffff;
 }
 #confirmMyInfor {
     position: fixed;
