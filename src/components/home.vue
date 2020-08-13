@@ -75,6 +75,9 @@
             },
         },
         computed: {},
+        beforeMount: function () {
+            this.$store.commit('chphone', undefined);
+        },
         mounted: function () {
             let _this = this; //拿到data中的数据
 
@@ -127,7 +130,7 @@
     bottom: 24px;
     white-space: nowrap;
     /* 字体 */
-    font-family: PingFang SC Light;
+    font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
     font-size: 17px;

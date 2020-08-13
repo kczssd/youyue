@@ -130,7 +130,7 @@
     margin-left: 16px;
     margin-right: 16px;
     /* 字体 */
-    font-family: PingFang SC Light;
+    font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
