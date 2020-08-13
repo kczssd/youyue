@@ -6,6 +6,7 @@
         </div>-->
         <div>{{ token }}</div>
         <div>{{ infor }}</div>
+        <div>{{ href }}</div>
         <router-view />
     </div>
 </template>
@@ -16,12 +17,14 @@
             return {
                 token: 'meile',
                 infor: 'test',
+                href: 'href',
             };
         },
         methods: {},
         computed: {},
         beforeMount: function () {
             // 拿url上的姓名和电话
+            this.href = location.href
             let token = decodeURIComponent(location.href.split('&')[0].split('?t=')[1]).replace(/ /g, '+');
             this.token = token;
             localStorage.setItem('young-youyue-token', token);
