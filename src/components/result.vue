@@ -104,7 +104,7 @@
             let req = new Request(betitle.re + '/team/apply/result', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json;',
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token,
                 },
                 body: `{"id":${this.$route.query.id}}`,
