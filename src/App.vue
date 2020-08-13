@@ -4,7 +4,8 @@
             <router-link to="/">Home</router-link>|
             <router-link to="/infor">Infor</router-link>
         </div>-->
-        <!-- <div>{{ token }}</div> -->
+        <div>{{ token }}</div>
+        <div>{{ infor }}</div>
         <router-view />
     </div>
 </template>
@@ -14,6 +15,7 @@
         data() {
             return {
                 token: 'meile',
+                infor: 'test',
             };
         },
         methods: {},
@@ -25,6 +27,7 @@
             localStorage.setItem('young-youyue-token', token);
             const parseToken = (token) => JSON.parse(decodeURIComponent(escape(Base64.atob(token.split('.')[0]))));
             let infor = parseToken(token);
+            this.infor = infor;
             console.log(infor);
             this.$store.commit('chName', infor.realName);
             this.$store.commit('chNum', infor.stuNum);
