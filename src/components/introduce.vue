@@ -85,13 +85,14 @@
             }); //获取组织的部门信息
             getJSON(req).then(function (resolve) {
                 let data = resolve.data;
-                let nowdifList = new Array();
-                try {
-                    Array.isArray(data) ? (nowdifList = data) : nowdifList.push(data);
-                } catch (e) {
-                    console.log(e);
-                }
-                _this.difdepartsList = nowdifList;
+                // let nowdifList = new Array();
+                // try {
+                //     Array.isArray(data) ? (nowdifList = data) : nowdifList.push(data);
+                // } catch (e) {
+                //     console.log(e);
+                // }
+                // _this.difdepartsList = nowdifList;
+                _this.difdepartsList = data;
             });
         },
     };
@@ -121,6 +122,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
     position: relative;
     white-space: nowrap;
     margin-left: 16px;
@@ -148,9 +152,9 @@
     height: 9px;
     position: absolute;
     bottom: 10px;
-    text-align: center;
     box-sizing: border-box;
     opacity: 1;
+    display: block;
 }
 .infont7 {
     font-family: PingFang SC;

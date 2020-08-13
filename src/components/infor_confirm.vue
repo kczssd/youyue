@@ -40,41 +40,43 @@
             <div class="departments font4" :class="isconfirm?'show':null">
                 <div id="title">选择部门</div>
                 <p>可以选择多个部门</p>
-                <ul id="coul">
-                    <li class="department" v-for="(items,index) in departList" :id="'department'+index">
-                        {{items.name}}
-                        <!-- <img @click="chChoose(index)" :src="items.ischoose?haschoose:nochoose" /> -->
-                        <svg
-                            @click="chChoose(index)"
-                            v-if="items.ischoose"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#625AF8" stroke="#625AF8" />
-                            <path
-                                d="M6 10.5L9 13.5L14.5 8"
-                                stroke="white"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                        </svg>
-                        <svg
-                            @click="chChoose(index)"
-                            v-else
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#A4A3B7" />
-                        </svg>
-                    </li>
-                </ul>
+                <div id="coulcontainer">
+                    <ul id="coul">
+                        <li class="department" v-for="(items,index) in departList" :id="'department'+index">
+                            {{items.name}}
+                            <!-- <img @click="chChoose(index)" :src="items.ischoose?haschoose:nochoose" /> -->
+                            <svg
+                                @click="chChoose(index)"
+                                v-if="items.ischoose"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#625AF8" stroke="#625AF8" />
+                                <path
+                                    d="M6 10.5L9 13.5L14.5 8"
+                                    stroke="white"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                            <svg
+                                @click="chChoose(index)"
+                                v-else
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#A4A3B7" />
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
                 <img @click="chClose" id="close" :src="close" alt />
                 <button @click="chConfirm" id="confirmDepart" :class="style">确认提交</button>
             </div>
@@ -293,7 +295,16 @@
 #contentdepart > p {
     margin-bottom: 8px;
 }
-#coul {
+#coulcontainer {
+    overflow-y: auto;
+    width: 375px;
+    max-height: 280px;
     margin-bottom: 100px;
 }
+#coulcontainer::-webkit-scrollbar {
+    display: none;
+}
+/* #coul {
+    float: left;
+} */
 </style>

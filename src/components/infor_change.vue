@@ -346,6 +346,7 @@
 .departments {
     width: 375px;
     min-height: 220px;
+    max-height: 450px;
     position: fixed;
     left: 0px;
     bottom: 0px;
