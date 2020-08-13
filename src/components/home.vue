@@ -133,7 +133,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 18px;
     letter-spacing: 0.03em;
     color: rgb(174, 173, 191);

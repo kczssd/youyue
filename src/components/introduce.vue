@@ -85,13 +85,9 @@
             }); //获取组织的部门信息
             getJSON(req).then(function (resolve) {
                 let data = resolve.data;
-                // let nowdifList = new Array();
-                // try {
-                //     Array.isArray(data) ? (nowdifList = data) : nowdifList.push(data);
-                // } catch (e) {
-                //     console.log(e);
-                // }
-                // _this.difdepartsList = nowdifList;
+                data = data.map((item) => {
+                    return { id: item.id, name: item.name.match('—') ? item.name.split('—')[1] : item.name, detail: item.detail, avatar: item.avatar };
+                });
                 _this.difdepartsList = data;
             });
         },
