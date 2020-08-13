@@ -89,7 +89,7 @@
             let req = new Request(betitle.do + '/team/apply/group', {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json;',
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token,
                 },
             }); //获取组织信息
@@ -100,7 +100,7 @@
             let myinfro = new Request(betitle.re + '/team/apply/login', {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json;',
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token,
                 },
             }); //获取已报部门信息

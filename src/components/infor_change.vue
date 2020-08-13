@@ -121,7 +121,7 @@
                 fetch(betitle.re + '/team/apply/update', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json;',
+                        'Content-Type': 'application/json',
                         Authorization: 'Bearer ' + token,
                     },
                     body: `{"phone":"${phone}","id":${index}}`,
@@ -149,7 +149,7 @@
             let req = new Request(betitle.re + '/team/apply/user', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json;',
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token,
                 },
                 body: `{"id":${this.$route.query.id}}`,

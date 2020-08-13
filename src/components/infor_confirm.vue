@@ -178,7 +178,7 @@
                 fetch(betitle.re + '/team/apply/register', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json;',
+                        'Content-Type': 'application/json',
                         Authorization: 'Bearer ' + token,
                     },
                     body: `{"ids":[${array}],"phone":"${phone}"}`,
@@ -206,7 +206,7 @@
             let req = new Request(betitle.do + '/team/apply/infos', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json;',
+                    'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token,
                 },
                 body: `{"id":${this.$route.query.id}}`,
