@@ -7,6 +7,8 @@
     <div>{{ token }}</div>
     <div>{{ infor }}</div>
     <div>{{ href }}</div>
+    <div>{{ res }}</div>
+
     <router-view />
   </div>
 </template>
@@ -20,6 +22,7 @@ export default {
       token: "meile",
       infor: "test",
       href: "href",
+      res: "res",
     };
   },
   methods: {},
@@ -27,10 +30,12 @@ export default {
   beforeMount: function () {
     this.href = location.href;
     let { t } = qs.parse(location.href);
+    let res = qs.parse(location.href);
     // let token = decodeURIComponent(
     //   location.href.split("&")[0].split("?t=")[1]
     // ).replace(/ /g, "+");
     this.token = t;
+    this.res = res;
     localStorage.setItem("young-youyue-token", t);
     const parseToken = (token) =>
       JSON.parse(decodeURIComponent(escape(Base64.atob(token.split(".")[0]))));
