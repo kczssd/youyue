@@ -358,8 +358,8 @@
 }
 #title {
     height: 37px;
-    width: 334px;
-    margin: 18px 15px 0 26px;
+    width: 327px;
+    margin: 18px 24px 0 24px;
     text-align: center;
     position: relative;
     font-weight: bold;
@@ -369,7 +369,7 @@
     color: #494670;
 }
 #title::after {
-    width: 334px;
+    width: 327px;
     height: 1px;
     position: absolute;
     display: block;
@@ -380,7 +380,7 @@
 }
 .departments > p {
     margin-top: 20px;
-    margin-left: 26px;
+    margin-left: 24px;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -391,8 +391,8 @@
 }
 .department {
     height: 56px;
-    width: 333px;
-    margin-left: 26px;
+    margin-left: 24px;
+    margin-right: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
