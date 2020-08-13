@@ -14,7 +14,7 @@
                     <!-- <img id="hu" :src="active" v-if="titleactive==index" /> -->
                     <svg
                         id="hu"
-                        v-if="titleactive==index"
+                        v-if="titleactive==index&&difdepartsList>1"
                         width="26"
                         height="9"
                         viewBox="0 0 26 9"
