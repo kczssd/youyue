@@ -15,7 +15,8 @@
                         v-else
                         id="contentPhone"
                         class="chfont font1"
-                        type="text"
+                        type="number"
+                        pattern="[0-9]*"
                         @blur="isempty"
                         @keyup="chphone(nowphone)"
                         v-model="nowphone"
