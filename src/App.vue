@@ -29,8 +29,8 @@ export default {
   computed: {},
   beforeMount: function () {
     this.href = location.href;
-    let { t } = qs.parse(location.hash.substring(3));
-    let res = `${location.hash.substring(3) + location.hash}`;
+    let { t } = qs.parse(location.href.split("?")[1]);
+    let res = `${location.href.split("?")[1]}`;
 
     // let token = decodeURIComponent(
     //   location.href.split("&")[0].split("?t=")[1]
