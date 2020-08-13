@@ -31,7 +31,7 @@ export default {
     //   location.href.split("&")[0].split("?t=")[1]
     // ).replace(/ /g, "+");
     this.token = t;
-    localStorage.setItem("young-youyue-token", token);
+    localStorage.setItem("young-youyue-token", t);
     const parseToken = (token) =>
       JSON.parse(decodeURIComponent(escape(Base64.atob(token.split(".")[0]))));
     let infor = parseToken(t);
