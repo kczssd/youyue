@@ -34,7 +34,7 @@ export default {
     localStorage.setItem("young-youyue-token", token);
     const parseToken = (token) =>
       JSON.parse(decodeURIComponent(escape(Base64.atob(token.split(".")[0]))));
-    let infor = parseToken(token);
+    let infor = parseToken(t);
     this.infor = infor;
     console.log(infor);
     this.$store.commit("chName", infor.realName);
