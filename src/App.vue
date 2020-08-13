@@ -9,6 +9,7 @@
     </div>
 </template>
 <script>
+    import { Base64 } from 'js-base64';
     export default {
         data() {
             return {
@@ -22,7 +23,7 @@
             let token = decodeURIComponent(location.href.split('&')[0].split('?t=')[1]).replace(/ /g, '+');
             this.token = token;
             localStorage.setItem('young-youyue-token', token);
-            const parseToken = (token) => JSON.parse(decodeURIComponent(escape(atob(token.split('.')[0]))));
+            const parseToken = (token) => JSON.parse(decodeURIComponent(escape(Base64.atob(token.split('.')[0]))));
             let infor = parseToken(token);
             console.log(infor);
             this.$store.commit('chName', infor.realName);
