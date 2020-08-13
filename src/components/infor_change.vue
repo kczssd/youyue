@@ -79,6 +79,7 @@
     import { mapMutations } from 'vuex';
     let betitle = process.env.NODE_ENV == 'development' ? { do: '/domain', re: '/redomain' } : { do: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter', re: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply' };
     let token = localStorage.getItem('young-youyue-token');
+    console.log(token)
     export default {
         data() {
             return {
