@@ -194,6 +194,7 @@ export default {
       } catch (e) {}
     },
     sendJSON(array, phone) {
+      this.infos = token;
       fetch(betitle.re + "/team/apply/register", {
         method: "POST",
         headers: {
@@ -204,7 +205,6 @@ export default {
       }) //提交报名信息
         .then((response) => response.json())
         .then((data) => {
-          this.infos = data;
           //   if (data.status == 10000) {
           //       console.log(window.location.href);
           //       this.$router.replace({ path: '/success' });
