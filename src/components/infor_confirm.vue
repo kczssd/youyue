@@ -137,11 +137,9 @@
                 });
                 this.chdepart(this.nowChosen);
             },
-            chinput() {
-                this.isphone = !this.isphone;
-                setTimeout(() => {
-                    document.querySelector('#contentPhone').focus();
-                }, 100);
+            async chinput() {
+                await (this.isphone = !this.isphone);
+                await document.querySelector('#contentPhone').focus();
             },
             isempty() {
                 if (this.nowphone.length == 0) {
