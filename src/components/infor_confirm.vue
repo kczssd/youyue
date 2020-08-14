@@ -1,7 +1,6 @@
 <template>
   <div v-if="departList!=undefined" class="infor_confirm">
     <div id="afterChange">
-      <div>{{infos}}</div>
       <div class="unchangeInfor font7">
         <div :class="'un'+items.classname" v-for="(items,index) in inforList.slice(0,2)">
           {{items.name}}
@@ -144,7 +143,6 @@ export default {
       ],
       union: require("@/assets/img/union.png"),
       close: require("@/assets/img/close.png"),
-      infos: "testtest",
     };
   },
   methods: {
@@ -194,7 +192,6 @@ export default {
       } catch (e) {}
     },
     sendJSON(array, phone) {
-      this.infos = token;
       fetch(betitle.re + "/team/apply/register", {
         method: "POST",
         headers: {
