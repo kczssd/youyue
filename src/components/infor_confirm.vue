@@ -184,7 +184,7 @@
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.status == 10000) {
-                            this.$router.replace({ path: '/success' });
+                            this.$router.replace({ name: 'Success' });
                         }
                     }); //若提交成功则返回报名成功页
             },
