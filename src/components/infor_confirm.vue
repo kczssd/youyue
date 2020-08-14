@@ -153,7 +153,7 @@
                 this.isconfirm = !this.isconfirm;
             },
             chConfirm() {
-                this.isconfirm = !this.isconfirm;
+                if (this.nowChosen.length != 0 && this.nowphone.length == 11) this.isconfirm = !this.isconfirm;
             },
             chCover() {
                 if (this.nowChosen.length != 0 && this.nowphone.length == 11) this.iscover = !this.iscover;
