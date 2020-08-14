@@ -180,7 +180,7 @@
     top: 248px;
 }
 .signin {
-    position: fixed;
+    position: absolute;
     top: 539px;
     left: 98px;
     width: 180px;
