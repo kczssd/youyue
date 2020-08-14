@@ -2,9 +2,6 @@
     <div>
         <img v-if="isload" :src="loading" id="load" />
         <div class="resultpage">
-            <div>{{step}}</div>
-            <div>{{final}}</div>
-            <div>{{resultList}}</div>
             <ul>
                 <li class="consequence" v-for="(items,index) in resultList">
                     <img :src="dpoint" />
