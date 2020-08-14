@@ -109,6 +109,7 @@
     let token = localStorage.getItem('young-youyue-token');
     let u = navigator.userAgent;
     let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    console.log(isIOS);
     export default {
         data() {
             return {
@@ -187,11 +188,7 @@
                     .then((data) => {
                         if (data.status == 10000) {
                             console.log(window.location.href);
-                            if (isIOS) {
-                                this.$router.replace({ path: '#/success' });
-                            } else {
-                                this.$router.replace({ path: '/success' });
-                            }
+                            this.$router.replace({ path: '/success' });
                         }
                     }); //若提交成功则返回报名成功页
             },
