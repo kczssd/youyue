@@ -205,10 +205,10 @@ export default {
       }) //提交报名信息
         .then((response) => response.json())
         .then((data) => {
-          //   if (data.status == 10000) {
-          //       console.log(window.location.href);
-          //       this.$router.replace({ path: '/success' });
-          //   }
+          if (data.status == 10000) {
+            console.log(window.location.href);
+            this.$router.replace({ path: "/success" });
+          }
         }); //若提交成功则返回报名成功页
     },
   },
