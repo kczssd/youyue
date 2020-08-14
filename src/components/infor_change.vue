@@ -127,7 +127,7 @@
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.status == 10000) {
-                            this.$router.replace({ path: './' });
+                            this.$router.replace({ path: '/' });
                         }
                     }); //信息修改成功返回首页
             },
