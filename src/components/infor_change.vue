@@ -1,75 +1,78 @@
 <template>
-    <div class="infor_change">
-        <div id="beforChange" v-if="!Ischanging">
-            <div class="infortable chfont1">
-                <div class="beinfor" v-for="(items,index) in inforList">
-                    {{items.name}}
-                    <span class="chfont font1">{{items.data}}</span>
-                </div>
-                <!-- <div class="beinfor">
+    <div>
+        <img v-if="isload" :src="loading" id="load" />
+        <div v-else class="infor_change">
+            <div id="beforChange" v-if="!Ischanging">
+                <div class="infortable chfont1">
+                    <div class="beinfor" v-for="(items,index) in inforList">
+                        {{items.name}}
+                        <span class="chfont font1">{{items.data}}</span>
+                    </div>
+                    <!-- <div class="beinfor">
                     报名信息
                     <div class="beinforlist">
                         <span class="chfont font1"></span>
                     </div>
-                </div>-->
-            </div>
-            <button @click="Ischanging=!Ischanging;chphone(undefined)" id="changeMyInfor" class="stylebutton">修改</button>
-        </div>
-        <div v-else id="afterChange">
-            <div class="unchangeInfor font7">
-                <div :class="'un'+items.classname" v-for="(items,index) in inforList.slice(0,2)">
-                    {{items.name}}
-                    <span class="unfont font1">{{items.data}}</span>
+                    </div>-->
                 </div>
+                <button @click="Ischanging=!Ischanging;chphone(undefined)" id="changeMyInfor" class="stylebutton">修改</button>
             </div>
-            <div class="chphoneInfor font7">
-                <div class="chphone">
-                    联系电话
-                    <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span>
-                    <input
-                        v-else
-                        id="contentPhone"
-                        class="chfont font1"
-                        type="number"
-                        pattern="[0-9]*"
-                        @blur="isempty"
-                        @keyup="chphone(nowphone)"
-                        v-model="nowphone"
-                        oninput="value=value.replace(/[^\d]/g,'')"
-                    />
-                </div>
-            </div>
-            <div class="chdepartInfor font7">
-                <div class="chdepart">
-                    报名部门
-                    <div id="contentdepart" class="defont">
-                        <p class="chfont2">{{inforList[3].data}}</p>
-                        <img :src="unionblack" id="union" />
+            <div v-else id="afterChange">
+                <div class="unchangeInfor font7">
+                    <div :class="'un'+items.classname" v-for="(items,index) in inforList.slice(0,2)">
+                        {{items.name}}
+                        <span class="unfont font1">{{items.data}}</span>
                     </div>
                 </div>
-            </div>
-            <!-- 选择部门 -->
-            <button id="confirmMyInfor" @click="chCover" :class="style">确认提交</button>
-            <!-- 蒙版 -->
-            <div class="cover" v-show="iscover"></div>
-            <!--  -->
-            <div class="confirm" :class="!isconfirm&&iscover?'show':null">
-                <div id="cotitle">信息核对</div>
-                <ul class="coinfors">
-                    <li class="coinfor font7" v-for="(items,index) in inforList">
-                        {{items.name+'：'}}
-                        <span class="font1 cofont">{{items.data}}</span>
-                    </li>
-                    <!-- <li class="coinfor font7">
+                <div class="chphoneInfor font7">
+                    <div class="chphone">
+                        联系电话
+                        <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span>
+                        <input
+                            v-else
+                            id="contentPhone"
+                            class="chfont font1"
+                            type="number"
+                            pattern="[0-9]*"
+                            @blur="isempty"
+                            @keyup="chphone(nowphone)"
+                            v-model="nowphone"
+                            oninput="value=value.replace(/[^\d]/g,'')"
+                        />
+                    </div>
+                </div>
+                <div class="chdepartInfor font7">
+                    <div class="chdepart">
+                        报名部门
+                        <div id="contentdepart" class="defont">
+                            <p class="chfont2">{{inforList[3].data}}</p>
+                            <img :src="unionblack" id="union" />
+                        </div>
+                    </div>
+                </div>
+                <!-- 选择部门 -->
+                <button id="confirmMyInfor" @click="chCover" :class="style">确认提交</button>
+                <!-- 蒙版 -->
+                <div class="cover" v-show="iscover"></div>
+                <!--  -->
+                <div class="confirm" :class="!isconfirm&&iscover?'show':null">
+                    <div id="cotitle">信息核对</div>
+                    <ul class="coinfors">
+                        <li class="coinfor font7" v-for="(items,index) in inforList">
+                            {{items.name+'：'}}
+                            <span class="font1 cofont">{{items.data}}</span>
+                        </li>
+                        <!-- <li class="coinfor font7">
                         {{inforList[3].name+'：'}}
                         <div class="inforlist">
                             <span class="font1 cofont">{{$route.params.depart}}</span>
                         </div>
-                    </li>-->
-                </ul>
-                <img @click="chClose" id="close" :src="close" />
-                <!-- 手动跳转 -->
-                <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
+                        </li>-->
+                    </ul>
+                    <img @click="chClose" id="close" :src="close" />
+                    <!-- 手动跳转 -->
+                    <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -92,6 +95,8 @@
                 nowphone: '',
                 unionblack: require('@/assets/img/unionblack.png'),
                 close: require('@/assets/img/close.png'),
+                loading: require('@/assets/img/loading.gif'),
+                isload: true,
             };
         },
         methods: {
@@ -152,13 +157,17 @@
                 },
                 body: `{"id":${this.$route.query.id}}`,
             }); //获取用户个人后台信息
-            getJSON(req).then(function (resolve) {
-                let data = resolve.data;
-                _this.chName(data.Name);
-                _this.chNum(data.StuNum);
-                _this.chphone(data.Phone);
-                _this.chdepart(data.TeamName);
-            });
+            getJSON(req)
+                .then(function (resolve) {
+                    let data = resolve.data;
+                    _this.chName(data.Name);
+                    _this.chNum(data.StuNum);
+                    _this.chphone(data.Phone);
+                    _this.chdepart(data.TeamName);
+                })
+                .then(function () {
+                    _this.isload = false;
+                });
         },
     };
 </script>

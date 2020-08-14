@@ -1,33 +1,36 @@
 <template>
-    <div class="resultpage">
-        <ul>
-            <li class="consequence" v-for="(items,index) in resultList">
-                <img :src="dpoint" />
-                <span class="tifont" v-text="setTitle(items.step)"></span>
-                <div class="contentres">
-                    <h2>郑志宇同学：</h2>
-                    <h3>恭喜您通过了</h3>
-                    <h4>红岩网校工作站—产品策划及运营</h4>
-                    <p v-if="final!=1||(final==1&&step!=items.step)">
-                        <span>部门的报名，请您准时于</span>
-                        <span class="bold">{{items.time}}</span>
-                        <span>在</span>
-                        <span class="bold">{{items.location}}</span>
-                        <span>进行部门面试，若因时间冲突等原因无法参加面试，请在截止时间之前与</span>
-                        <span class="bold">{{items.link_name}}</span>
-                        <span>联系，联系人电话号码为</span>
-                        <span class="bold">{{items.link_phone}}</span>
-                        <span>。预祝您面试顺利~</span>
-                    </p>
-                    <p v-else>
-                        <span>部门的招新筛选，成为我们部门的一员，请尽快添加</span>
-                        <span class="bold">{{items.group_number}}</span>
-                        <span>群，入群申请时请按照格式：学院-姓名 加入本部门。</span>
-                    </p>
-                    <img :src="approve" class="approve" />
-                </div>
-            </li>
-        </ul>
+    <div>
+        <img v-if="isload" :src="loading" id="load" />
+        <div class="resultpage">
+            <ul>
+                <li class="consequence" v-for="(items,index) in resultList">
+                    <img :src="dpoint" />
+                    <span class="tifont" v-text="setTitle(items.step)"></span>
+                    <div class="contentres">
+                        <h2>郑志宇同学：</h2>
+                        <h3>恭喜您通过了</h3>
+                        <h4>红岩网校工作站—产品策划及运营</h4>
+                        <p v-if="final!=1||(final==1&&step!=items.step)">
+                            <span>部门的报名，请您准时于</span>
+                            <span class="bold">{{items.time}}</span>
+                            <span>在</span>
+                            <span class="bold">{{items.location}}</span>
+                            <span>进行部门面试，若因时间冲突等原因无法参加面试，请在截止时间之前与</span>
+                            <span class="bold">{{items.link_name}}</span>
+                            <span>联系，联系人电话号码为</span>
+                            <span class="bold">{{items.link_phone}}</span>
+                            <span>。预祝您面试顺利~</span>
+                        </p>
+                        <p v-else>
+                            <span>部门的招新筛选，成为我们部门的一员，请尽快添加</span>
+                            <span class="bold">{{items.group_number}}</span>
+                            <span>群，入群申请时请按照格式：学院-姓名 加入本部门。</span>
+                        </p>
+                        <img :src="approve" class="approve" />
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -71,6 +74,8 @@
                 ],
                 dpoint: require('@/assets/img/dpoint.png'),
                 approve: require('@/assets/img/approve.png'),
+                loading: require('@/assets/img/loading.gif'),
+                isload: true,
             };
         },
         methods: {
@@ -109,12 +114,16 @@
                 },
                 body: `{"id":${this.$route.query.id}}`,
             }); //获取组织信息
-            getJSON(req).then(function (resolve) {
-                let data = resolve.data;
-                _this.step = resolve.step; //当前面试阶段
-                _this.final = resolve.state; //判断当前是否为最终面试
-                _this.resultList = data;
-            });
+            getJSON(req)
+                .then(function (resolve) {
+                    let data = resolve.data;
+                    _this.step = resolve.step; //当前面试阶段
+                    _this.final = resolve.state; //判断当前是否为最终面试
+                    _this.resultList = data;
+                })
+                .then(function () {
+                    _this.isload = false;
+                });
         },
     };
 </script>

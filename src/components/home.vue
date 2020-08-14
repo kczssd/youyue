@@ -1,52 +1,55 @@
 <template>
-    <div v-if="difList!=undefined" class="homepage">
-        <header id="choose">
-            <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择</span>
-            <span class="yibao" @click="titleactive=false;" :id="!titleactive?'font1b':null">已报部门</span>
-            <!-- <img :src="active" :id="titleactive?'hu1':'hu2'" /> -->
-            <svg :id="titleactive?'hu1':'hu2'" width="26" height="9" viewBox="0 0 26 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M24 2C21.0826 5.20145 17.1258 7 13 7C8.8742 7 4.91738 5.20145 2 2"
-                    stroke="#817BF9"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                />
-            </svg>
-        </header>
-        <main id="diffences" v-show="titleactive">
-            <ul>
-                <!-- 向部门介绍页传入组织id -->
-                <router-link :to="'/intro?departid='+item.id" class="diffent" v-for="(item,index) in difList" :key="item.id">
-                    <h3 class="homefont1">{{item.name}}</h3>
-                    <p class="homefont7">{{item.introduction}}</p>
-                    <svg id="point" width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            opacity="0.6"
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M0 12.9811V0.0189514C3.35622 0.274264 6 3.07839 6 6.50001C6 9.92162 3.35622 12.7257 0 12.9811Z"
-                            fill="#D1CEFF"
-                        />
-                    </svg>
-                </router-link>
-            </ul>
-        </main>
-        <main id="haschoose" v-show="!titleactive">
-            <ul>
-                <li class="chosen" v-for="(items,index) in showList">
-                    <img class="styleimg" :src="items.avatar" />
-                    <h3 class="font1b">{{items.name}}</h3>
-                    <p class="font7">{{items.detail}}</p>
-                    <router-link :to="'/infor_change?id='+items.id">
-                        <!-- 传给信息修改页部门名字 -->
-                        <button class="signInfor">报名信息</button>
+    <div>
+        <img v-if="isload" :src="loading" id="load" />
+        <div v-else class="homepage">
+            <header id="choose">
+                <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择</span>
+                <span class="yibao" @click="titleactive=false;" :id="!titleactive?'font1b':null">已报部门</span>
+                <!-- <img :src="active" :id="titleactive?'hu1':'hu2'" /> -->
+                <svg :id="titleactive?'hu1':'hu2'" width="26" height="9" viewBox="0 0 26 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M24 2C21.0826 5.20145 17.1258 7 13 7C8.8742 7 4.91738 5.20145 2 2"
+                        stroke="#817BF9"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            </header>
+            <main id="diffences" v-show="titleactive">
+                <ul>
+                    <!-- 向部门介绍页传入组织id -->
+                    <router-link :to="'/intro?departid='+item.id" class="diffent" v-for="(item,index) in difList" :key="item.id">
+                        <h3 class="homefont1">{{item.name}}</h3>
+                        <p class="homefont7">{{item.introduction}}</p>
+                        <svg id="point" width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                opacity="0.6"
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M0 12.9811V0.0189514C3.35622 0.274264 6 3.07839 6 6.50001C6 9.92162 3.35622 12.7257 0 12.9811Z"
+                                fill="#D1CEFF"
+                            />
+                        </svg>
                     </router-link>
-                    <!-- 打开录取结果页手动跳转 -->
-                    <button @click="toResult($event,items.id)" class="signResult" :class="items.state?null:'ban'">录取结果</button>
-                    <img :src="point" v-show="items.read_is" id="statepoint" />
-                </li>
-            </ul>
-        </main>
+                </ul>
+            </main>
+            <main id="haschoose" v-show="!titleactive">
+                <ul>
+                    <li class="chosen" v-for="(items,index) in showList">
+                        <img class="styleimg" :src="items.avatar" />
+                        <h3 class="font1b">{{items.name}}</h3>
+                        <p class="font7">{{items.detail}}</p>
+                        <router-link :to="'/infor_change?id='+items.id">
+                            <!-- 传给信息修改页部门名字 -->
+                            <button class="signInfor">报名信息</button>
+                        </router-link>
+                        <!-- 打开录取结果页手动跳转 -->
+                        <button @click="toResult($event,items.id)" class="signResult" :class="items.state?null:'ban'">录取结果</button>
+                        <img :src="point" v-show="items.read_is" id="statepoint" />
+                    </li>
+                </ul>
+            </main>
+        </div>
     </div>
 </template>
 
@@ -66,6 +69,8 @@
                     // { id: 2, name: 'Web研发部', detail: '守护全世界最好的Web研发部', avatar: '/', state: 1, new: 1 },
                 ],
                 point: require('@/assets/img/point.png'),
+                loading: require('@/assets/img/loading.gif'),
+                isload: true,
                 titleactive: true,
             };
         },
@@ -93,10 +98,20 @@
                     Authorization: 'Bearer ' + token,
                 },
             }); //获取组织信息
-            getJSON(req).then(function (resolve) {
-                let data = resolve.data;
-                _this.difList = data;
-            });
+            getJSON(req)
+                .then(function (resolve) {
+                    let data = resolve.data;
+                    data.forEach(function (item, index, arr) {
+                        if (item.id == 9) {
+                            arr.splice(index, 1);
+                            arr.unshift(item);
+                        }
+                    });
+                    _this.difList = data;
+                })
+                .then(function () {
+                    _this.isload = false;
+                });
             let myinfro = new Request(betitle.re + '/team/apply/login', {
                 method: 'GET',
                 headers: {
