@@ -107,6 +107,8 @@
     import { mapMutations } from 'vuex';
     let betitle = process.env.NODE_ENV == 'development' ? { do: '/domain', re: '/redomain' } : { do: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter', re: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply' };
     let token = localStorage.getItem('young-youyue-token');
+    let u = navigator.userAgent;
+    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
     export default {
         data() {
             return {
@@ -184,7 +186,12 @@
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.status == 10000) {
-                            this.$router.replace({ name: 'Success' });
+                            console.log(window.location.href);
+                            if (isIOS) {
+                                this.$router.replace({ path: '#/success' });
+                            } else {
+                                this.$router.replace({ path: '/success' });
+                            }
                         }
                     }); //若提交成功则返回报名成功页
             },
