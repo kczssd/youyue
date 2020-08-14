@@ -144,7 +144,7 @@ export default {
       ],
       union: require("@/assets/img/union.png"),
       close: require("@/assets/img/close.png"),
-      infos: "test",
+      infos: "testtest",
     };
   },
   methods: {
