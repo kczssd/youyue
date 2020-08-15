@@ -130,7 +130,7 @@
 <style>
 .homepage {
     height: 69px;
-    width: 100%;
+    width: 375px;
 }
 #choose {
     background: #ffffff;

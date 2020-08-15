@@ -7,7 +7,7 @@
                     <img :src="dpoint" />
                     <span class="tifont" v-text="setTitle(items.step)"></span>
                     <div class="contentres">
-                        <h2>郑志宇同学：</h2>
+                        <h2>{{inforList[0].data}}同学：</h2>
                         <h3>恭喜您通过了</h3>
                         <h4>红岩网校工作站—产品策划及运营</h4>
                         <p v-if="final!=1||(final==1&&step!=items.step)">
@@ -42,6 +42,7 @@
             return {
                 step: undefined,
                 final: undefined,
+                inforList: this.$store.state.inforList,
                 resultList: [
                     //录取结果页面
                     // {
@@ -101,6 +102,14 @@
         computed: {},
         mounted: function () {
             let _this = this;
+            function timestampToTime(timestamp) {
+                var date = new Date(_this.time * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
+                var D = date.getDate() + '日';
+                var h = date.getHours() + '点';
+                var m = date.getMinutes() == 0 ? '' : date.getMinutes() + '分';
+                return M + D + h + m;
+            }
             async function getJSON(req) {
                 let response = await fetch(req);
                 let data = await response.json();
@@ -119,6 +128,9 @@
                     let data = resolve.data;
                     _this.step = resolve.step; //当前面试阶段
                     _this.final = resolve.state; //判断当前是否为最终面试
+                    data.map((item) => {
+                        item.time = timestampToTime(item.time);
+                    });
                     _this.resultList = data;
                 })
                 .then(function () {
