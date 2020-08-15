@@ -35,7 +35,7 @@
             </header>
             <main v-if="difdepartsList!=undefined" class="maincontent">
                 <img class="styleimg" :src="difdepartsList[titleactive].avatar" />
-                <h3 class="font1">{{difdepartsList[titleactive].name}}</h3>
+                <h3 class="infont1">{{difdepartsList[titleactive].name}}</h3>
                 <p class="infont7">{{difdepartsList[titleactive].detail}}</p>
             </main>
             <!-- 手动跳转 -->
@@ -116,7 +116,7 @@
 }
 #container {
     min-width: 100%;
-    height: 69px;
+    height: 65px;
     display: flex;
     justify-content: center;
     float: left;
@@ -138,7 +138,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 12px;
     letter-spacing: 0.03em;
     color: #a4a3b7;
     opacity: 0.9;
@@ -147,7 +147,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     color: #1c184c;
     letter-spacing: 0;
     opacity: 0.9;
@@ -161,12 +161,22 @@
     opacity: 1;
     display: block;
 }
+.infont1 {
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    /* 1 */
+    color: #1c184c;
+    opacity: 0.9;
+}
 .infont7 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 10px;
+    line-height: 20px;
     letter-spacing: 0.05em;
     color: #777494;
 }
@@ -181,25 +191,25 @@
 .maincontent > h3 {
     position: absolute;
     left: 16px;
-    bottom: 151px;
+    bottom: 155px;
 }
 .maincontent > p {
     position: absolute;
     left: 16px;
-    top: 248px;
+    top: 244px;
 }
 .signin {
     position: absolute;
     top: 539px;
     left: 98px;
-    width: 180px;
-    height: 44px;
+    width: 172px;
+    height: 36px;
     background: #625af8;
     border-radius: 32px;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 14px;
     letter-spacing: 0.1em;
     color: #ffffff;
 }

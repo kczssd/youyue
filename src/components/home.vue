@@ -134,7 +134,7 @@
 }
 #choose {
     background: #ffffff;
-    height: 69px;
+    height: 65px;
     width: 100%;
     position: sticky;
     top: 0;
@@ -148,8 +148,8 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 14px;
     letter-spacing: 0.03em;
     color: rgb(174, 173, 191);
     opacity: 0.9;
@@ -166,16 +166,16 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 14px;
     color: #494670;
 }
 .homefont7 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 10px;
+    line-height: 12px;
     letter-spacing: 0.02em;
     color: #777494;
 }
@@ -183,7 +183,7 @@
     width: 26px;
     height: 9px;
     position: absolute;
-    left: 90px;
+    left: 84px;
     top: 50px;
     box-sizing: border-box;
 }
@@ -191,7 +191,7 @@
     width: 26px;
     height: 9px;
     position: absolute;
-    left: 256px;
+    left: 250px;
     top: 50px;
     box-sizing: border-box;
 }
@@ -199,7 +199,7 @@
 }
 .diffent {
     width: 355px;
-    height: 92px;
+    height: 84px;
     background: #ffffff;
     border-radius: 8px;
     margin-left: 10px;

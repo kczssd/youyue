@@ -103,8 +103,8 @@ body {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 14px;
     /* 1 */
     color: #1c184c;
     opacity: 0.9;
