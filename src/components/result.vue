@@ -1,7 +1,8 @@
 <template>
     <div>
         <img v-if="isload" :src="loading" id="load" />
-        <div class="resultpage">
+        <div v-else class="resultpage">
+            <div>{{resultList}}</div>
             <ul>
                 <li class="consequence" v-for="(items,index) in resultList">
                     <img :src="dpoint" />
