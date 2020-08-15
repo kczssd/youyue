@@ -312,6 +312,7 @@
     caret-color: #625af8;
     width: 115px;
     font-size: 16px;
+    margin-right: 12px;
 }
 #contentdepart {
     /* 重点关注 */
