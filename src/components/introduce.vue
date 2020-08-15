@@ -125,11 +125,9 @@
     height: 69px;
     width: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: -webkit-flex;
-    -webkit-align-items: center;
-    -webkit-justify-content: center;
     position: relative;
     white-space: nowrap;
     margin-left: 16px;
@@ -159,13 +157,12 @@
     bottom: 10px;
     box-sizing: border-box;
     opacity: 1;
-    display: block;
 }
 .infont1 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 16px;
     /* 1 */
     color: #1c184c;
@@ -175,7 +172,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 22px;
     letter-spacing: 0.05em;
     color: #777494;

@@ -174,7 +174,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     letter-spacing: 0.02em;
     color: #777494;
