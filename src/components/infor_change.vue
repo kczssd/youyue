@@ -81,8 +81,9 @@
 <script>
     import { mapMutations } from 'vuex';
     let betitle = process.env.NODE_ENV == 'development' ? { do: '/domain', re: '/redomain' } : { do: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter', re: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply' };
-    let token = localStorage.getItem('young-youyue-token');
-    console.log(token);
+    // let token = localStorage.getItem('young-youyue-token');
+    let token =
+        'eyJjbGFzcyI6IjEzMDAxODA3IiwiY29sbGVnZSI6Iui9r+S7tuW3peeoi+WtpumZoiIsImV4cCI6IjEwMjUxMDczNzM1IiwiaWF0IjoiMTU5NjM1Njg1NSIsIm1ham9yIjoiIiwicmVhbE5hbWUiOiLkvZXluprlnaQiLCJzdHVOdW0iOiIyMDE4MjE0MTM5Iiwic3ViIjoieGJzIn0=.CRh5ky9jANHniAu9/GzB+dM8omUZ6sSPRB8LT0qN10OC16JuAiPTNiv2DyozOkicA3mx/qJwTMDjxMcbANwpNZ3oMaBKPC5NOxAt0cKf4XP444a/OibLY93Qs2sMBu0oT4aDExKQLO6Fu9PJg0sXC1pfAABlHwQUGRPlwRPlESTL1s1WMKb6Bqi5VI62JIP78N/PgPL45yX8SJxNrBM3Lr4ORxdX6MSL2RASdpl0Kz2h8JEGjN1nrv6Q8O5Viee0XjpI8qcclvo/uEKczR2COIcOjvLgEmX3JhsQ6u8MSyj59ASnh0NNif7LElJREHTj8UtKR8vQb1afB3r/IonAWA==';
     export default {
         data() {
             return {
@@ -188,6 +189,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+    align-items: center;
 }
 .chfont1 {
     font-family: PingFang SC;
@@ -211,8 +213,7 @@
 }
 .beinfor {
     min-height: 20px;
-    width: 333px;
-    margin-left: 26px;
+    width: 322px;
     /* 强制不换行 */
     white-space: nowrap;
     display: flex;
@@ -220,14 +221,12 @@
 }
 .beinfor > span {
     white-space: normal;
-    margin-left: 10px;
 }
 .beinforlist {
     max-width: 152px;
 }
 .chfont {
     height: 20px;
-    margin-right: 16px;
     float: right;
 }
 .chfont,

@@ -37,7 +37,7 @@
                 <ul>
                     <li class="chosen" v-for="(items,index) in showList">
                         <img class="styleimg" :src="items.avatar" />
-                        <h3 class="font1b">{{items.name}}</h3>
+                        <h3 id="font1b">{{items.name}}</h3>
                         <p class="font7">{{items.detail}}</p>
                         <router-link :to="'/infor_change?id='+items.id">
                             <!-- 传给信息修改页部门名字 -->
@@ -134,7 +134,7 @@
 }
 #choose {
     background: #ffffff;
-    height: 65px;
+    height: 67px;
     width: 100%;
     position: sticky;
     top: 0;
@@ -148,8 +148,8 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 16px;
     letter-spacing: 0.03em;
     color: rgb(174, 173, 191);
     opacity: 0.9;
@@ -166,16 +166,16 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 16px;
     color: #494670;
 }
 .homefont7 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 12px;
+    line-height: 14px;
     letter-spacing: 0.02em;
     color: #777494;
 }
@@ -183,7 +183,7 @@
     width: 26px;
     height: 9px;
     position: absolute;
-    left: 84px;
+    left: 88px;
     top: 50px;
     box-sizing: border-box;
 }
@@ -191,7 +191,7 @@
     width: 26px;
     height: 9px;
     position: absolute;
-    left: 250px;
+    left: 254px;
     top: 50px;
     box-sizing: border-box;
 }
@@ -199,7 +199,7 @@
 }
 .diffent {
     width: 355px;
-    height: 84px;
+    height: 88px;
     background: #ffffff;
     border-radius: 8px;
     margin-left: 10px;
@@ -237,10 +237,12 @@
 }
 .chosen > h3 {
     margin-left: 16px;
+    margin-right: 16px;
     margin-top: 24px;
 }
 .chosen > p {
     margin-left: 16px;
+    margin-right: 16px;
     margin-top: 8px;
     padding-bottom: 96px;
 }

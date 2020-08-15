@@ -138,7 +138,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.03em;
     color: #a4a3b7;
     opacity: 0.9;
@@ -147,7 +147,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     color: #1c184c;
     letter-spacing: 0;
     opacity: 0.9;
@@ -165,8 +165,8 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 16px;
     /* 1 */
     color: #1c184c;
     opacity: 0.9;
@@ -175,8 +175,8 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 22px;
     letter-spacing: 0.05em;
     color: #777494;
 }
@@ -191,25 +191,25 @@
 .maincontent > h3 {
     position: absolute;
     left: 16px;
-    bottom: 155px;
+    bottom: 153px;
 }
 .maincontent > p {
     position: absolute;
     left: 16px;
-    top: 244px;
+    top: 250px;
 }
 .signin {
     position: absolute;
     top: 539px;
     left: 98px;
-    width: 172px;
-    height: 36px;
+    width: 180px;
+    height: 44px;
     background: #625af8;
     border-radius: 32px;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 18px;
+    line-height: 18px;
     letter-spacing: 0.1em;
     color: #ffffff;
 }
