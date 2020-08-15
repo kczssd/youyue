@@ -106,7 +106,7 @@
 <style>
 .choose {
     width: 100%;
-    height: 69px;
+    height: 65px;
     background: #ffffff;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -116,19 +116,19 @@
 }
 #container {
     min-width: 100%;
-    height: 65px;
+    margin-top: 22px;
+    height: 43px;
     display: flex;
     justify-content: center;
     float: left;
 }
 .difdeparts {
-    height: 69px;
+    height: 43px;
     width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    justify-content: space-between;
     white-space: nowrap;
     margin-left: 16px;
     margin-right: 16px;
@@ -136,7 +136,7 @@
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 0.03em;
     color: #a4a3b7;
     opacity: 0.9;
@@ -153,9 +153,7 @@
 #hu {
     width: 26px;
     height: 9px;
-    position: absolute;
-    bottom: 10px;
-    box-sizing: border-box;
+    margin-bottom: 10px;
     opacity: 1;
 }
 .infont1 {
