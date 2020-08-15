@@ -27,17 +27,16 @@
                 <div class="chphoneInfor font7">
                     <div class="chphone">
                         联系电话
-                        <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span>
+                        <!-- <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span> -->
                         <input
-                            v-else
                             id="contentPhone"
                             class="chfont font1"
                             type="number"
                             pattern="[0-9]*"
-                            @blur="isempty"
                             @keyup="chphone(nowphone)"
                             v-model="nowphone"
                             oninput="value=value.replace(/[^\d]/g,'')"
+                            placeholder="请填写电话号码"
                         />
                     </div>
                 </div>
@@ -89,7 +88,7 @@
                 Ischanging: false,
                 iscover: false,
                 isconfirm: false,
-                isphone: true,
+                // isphone: true,
                 inforList: this.$store.state.inforList,
                 nowChosen: [],
                 nowphone: '',
@@ -100,15 +99,15 @@
             };
         },
         methods: {
-            async chinput() {
-                await (this.isphone = !this.isphone);
-                await document.querySelector('#contentPhone').focus();
-            },
-            isempty() {
-                if (this.nowphone.length == 0) {
-                    this.isphone = !this.isphone;
-                }
-            },
+            // async chinput() {
+            //     await (this.isphone = !this.isphone);
+            //     await document.querySelector('#contentPhone').focus();
+            // },
+            // isempty() {
+            //     if (this.nowphone.length == 0) {
+            //         this.isphone = !this.isphone;
+            //     }
+            // },
             chCover() {
                 if (this.nowphone.length == 11) this.iscover = !this.iscover;
             },
