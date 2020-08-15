@@ -2,7 +2,6 @@
     <div>
         <img v-if="isload" :src="loading" id="load" />
         <div v-else class="resultpage">
-            <div>{{resultList}}</div>
             <ul>
                 <li class="consequence" v-for="(items,index) in resultList">
                     <img :src="dpoint" />
@@ -104,7 +103,7 @@
         mounted: function () {
             let _this = this;
             function timestampToTime(timestamp) {
-                var date = new Date(_this.time * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var date = new Date(parseInt(timestamp) * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
                 var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
                 var D = date.getDate() + '日';
                 var h = date.getHours() + '点';
