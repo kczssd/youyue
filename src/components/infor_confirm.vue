@@ -10,16 +10,17 @@
             <div class="chphoneInfor font7">
                 <div class="chphone">
                     联系电话
-                    <!-- <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span> -->
+                    <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span>
                     <input
+                        v-else
                         id="contentPhone"
                         class="chfont font1"
                         type="number"
                         pattern="[0-9]*"
+                        @blur="isempty"
                         @keyup="chphone(nowphone)"
                         v-model="nowphone"
                         oninput="value=value.replace(/[^\d]/g,'')"
-                        placeholder="请填写电话号码"
                     />
                 </div>
             </div>
@@ -118,7 +119,7 @@
     export default {
         data() {
             return {
-                // isphone: true,
+                isphone: true,
                 iscover: false,
                 isconfirm: false,
                 inforList: this.$store.state.inforList,
@@ -145,15 +146,15 @@
                 });
                 this.chdepart(this.nowChosen);
             },
-            // async chinput() {
-            //     await (this.isphone = !this.isphone);
-            //     await document.querySelector('#contentPhone').focus();
-            // },
-            // isempty() {
-            //     if (this.nowphone.length == 0) {
-            //         this.isphone = !this.isphone;
-            //     }
-            // },
+            async chinput() {
+                await (this.isphone = !this.isphone);
+                await document.querySelector('#contentPhone').focus();
+            },
+            isempty() {
+                if (this.nowphone.length == 0) {
+                    this.isphone = !this.isphone;
+                }
+            },
             chAll() {
                 this.iscover = !this.iscover;
                 this.isconfirm = !this.isconfirm;
@@ -233,20 +234,6 @@
 </script>
 
 <style>
-#contentPhone::placeholder {
-    font-family: PingFang SC;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 18px;
-    letter-spacing: 0.03em;
-    /* 9 */
-    color: #a4a3b7;
-    opacity: 0.9;
-}
-#contentPhone:focus::placeholder {
-    color: transparent;
-}
 #close {
     width: 13px;
     height: 13px;
