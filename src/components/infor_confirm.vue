@@ -20,7 +20,7 @@
                         @blur="isempty"
                         @keyup="chphone(nowphone)"
                         v-model="nowphone"
-                        oninput="value=value.replace(/[^\d]/g,'')"
+                        oninput="value=value.replace(/[^\d]/g,'');value.length>11?value=value.slice(0,11):value"
                     />
                 </div>
             </div>
