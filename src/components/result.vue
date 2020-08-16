@@ -2,8 +2,8 @@
     <div>
         <img v-if="isload" :src="loading" id="load" />
         <div v-else class="resultpage">
-            <div>{{'step':step}}</div>
-            <div>{{'state':final}}</div>
+            <div>{{'step：'+step}}</div>
+            <div>{{'state：'+final}}</div>
             <div>{{resultList}}</div>
             <ul>
                 <li class="consequence" v-for="(items,index) in resultList">
