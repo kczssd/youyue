@@ -9,7 +9,7 @@
                     <div class="contentres">
                         <h2>{{inforList[0].data}}同学：</h2>
                         <h3>恭喜您通过了</h3>
-                        <h4>红岩网校工作站—产品策划及运营</h4>
+                        <h4>{{items.name}}</h4>
                         <p v-if="final!=1||(final==1&&step!=items.step)">
                             <span>部门的报名，请您准时于</span>
                             <span class="bold">{{items.time}}</span>
