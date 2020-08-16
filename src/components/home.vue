@@ -34,7 +34,7 @@
                 </ul>
             </main>
             <main id="haschoose" v-show="!titleactive">
-                <div>{{showList}}</div>
+                <!-- <div>{{showList}}</div> -->
                 <ul>
                     <li class="chosen" v-for="(items,index) in showList">
                         <img class="styleimg" :src="items.avatar" />
