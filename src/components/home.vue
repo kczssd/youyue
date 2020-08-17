@@ -34,7 +34,7 @@
                 </ul>
             </main>
             <main id="haschoose" v-show="!titleactive">
-                <div>{{showList}}</div>
+                <!-- <div>{{showList}}</div> -->
                 <ul>
                     <li class="chosen" v-for="(items,index) in showList">
                         <img class="styleimg" :src="items.avatar" />
@@ -45,7 +45,7 @@
                             <button class="signInfor">报名信息</button>
                         </router-link>
                         <!-- 打开录取结果页手动跳转 -->
-                        <button @click="toResult($event,items.id)" class="signResult" :class="items.state!=0?null:'ban'">录取结果</button>
+                        <button @click="toResult($event,items.id)" class="signResult" :class="items.state>1?null:'ban'">录取结果</button>
                         <img :src="point" v-show="items.read_is" id="statepoint" />
                     </li>
                 </ul>
