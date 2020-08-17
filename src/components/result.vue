@@ -96,15 +96,15 @@
                 } else {
                     switch (step) {
                         case 1:
-                            return '一轮选拔';
+                            return '一轮筛选';
                         case 2:
-                            return '二轮选拔';
+                            return '二轮筛选';
                         case 3:
-                            return '三轮选拔';
+                            return '三轮筛选';
                         case 4:
-                            return '四轮选拔';
+                            return '四轮筛选';
                         case 5:
-                            return '五轮选拔';
+                            return '五轮筛选';
                     }
                 }
             },
