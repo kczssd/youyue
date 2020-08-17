@@ -2,29 +2,36 @@
     <div>
         <img v-if="isload" :src="loading" id="load" />
         <div v-else class="resultpage">
-            <div>{{'step(当前面试进度)：'+step}}</div>
+            <!-- <div>{{'step(当前面试进度)：'+step}}</div>
             <div>{{'state(是否为最终面)：'+final}}</div>
-            <div>{{resultList}}</div>
+            <div>{{resultList}}</div>-->
             <ul>
                 <li class="consequence" v-for="(items,index) in resultList">
                     <img :src="dpoint" />
-                    <span class="tifont" v-text="setTitle(items.step)"></span>
+                    <span class="tifont" v-text="setTitle(items.step,items.send_type)"></span>
                     <div class="contentres">
-                        <h2>{{inforList[0].data}}同学：</h2>
-                        <h3>恭喜您通过了</h3>
-                        <h4>{{items.name}}</h4>
-                        <p v-if="final!=1||(final==1&&step!=items.step)">
-                            <span>部门的报名，请您准时于</span>
+                        <div v-if="items.send_type==3">
+                            <h2>亲爱的{{inforList[0].data}}同学：</h2>
+                            <h3>恭喜您通过了</h3>
+                            <h4>{{items.name}}</h4>
+                        </div>
+                        <div v-else>
+                            <h2>亲爱的{{inforList[0].data}}同学：</h2>
+                            <h3>欢迎您报名</h3>
+                            <h4>{{items.name}}</h4>
+                        </div>
+                        <p v-if="items.send_type!=3">
+                            <span>请您准时于</span>
                             <span class="bold">{{items.time}}</span>
-                            <span>在</span>
+                            <span>至</span>
                             <span class="bold">{{items.location}}</span>
-                            <span>进行部门面试，若因时间冲突等原因无法参加面试，请在截止时间之前与</span>
+                            <span>参与{{items.send_type==2?'笔试':'面试'}}，若因时间冲突等原因无法参加本场{{items.send_type==2?'笔试':'面试'}}，请在{{items.send_type==2?'笔试':'面试'}}最终截止时间之前，与</span>
                             <span class="bold">{{items.link_name}}</span>
                             <span>联系，联系人电话号码为</span>
                             <span class="bold">{{items.link_phone}}</span>
-                            <span>。预祝您面试顺利~</span>
+                            <span>。预祝您{{items.send_type==2?'笔试':'面试'}}顺利~</span>
                         </p>
-                        <p v-else>
+                        <p v-if="items.send_type==3">
                             <span>部门的招新筛选，成为我们部门的一员，请尽快添加</span>
                             <span class="bold">{{items.group_number}}</span>
                             <span>群，入群申请时请按照格式：学院-姓名 加入本部门。</span>
@@ -43,8 +50,8 @@
     export default {
         data() {
             return {
-                step: undefined,
-                final: undefined,
+                // step: undefined,
+                // final: undefined,
                 inforList: this.$store.state.inforList,
                 resultList: [
                     //录取结果页面
@@ -83,21 +90,21 @@
             };
         },
         methods: {
-            setTitle(step) {
-                if (this.final == 1 && step == this.step) {
+            setTitle(step, type) {
+                if (type == 3) {
                     return '最终结果';
                 } else {
                     switch (step) {
                         case 1:
-                            return '一面结果';
+                            return '一轮选拔';
                         case 2:
-                            return '二面结果';
+                            return '二轮选拔';
                         case 3:
-                            return '三面结果';
+                            return '三轮选拔';
                         case 4:
-                            return '四面结果';
+                            return '四轮选拔';
                         case 5:
-                            return '五面结果';
+                            return '五轮选拔';
                     }
                 }
             },
@@ -129,9 +136,9 @@
             getJSON(req)
                 .then(function (resolve) {
                     let data = resolve.data;
-                    //判断方法1
-                    _this.step = resolve.step; //当前面试阶段
-                    _this.final = resolve.state; //判断当前是否为最终面试
+                    //判断方法1舍弃
+                    // _this.step = resolve.step; //当前面试阶段
+                    // _this.final = resolve.state; //判断当前是否为最终面试
                     data.map((item) => {
                         item.time = timestampToTime(item.time);
                     });
@@ -158,7 +165,7 @@
     border-radius: 8px;
     position: relative;
 }
-.contentres > h2 {
+.contentres h2 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
@@ -170,7 +177,7 @@
     top: 50px;
     left: 27px;
 }
-.contentres > h3 {
+.contentres h3 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: normal;
@@ -183,7 +190,7 @@
     left: 27px;
     right: 25px;
 }
-.contentres > h4 {
+.contentres h4 {
     font-family: PingFang SC;
     font-style: normal;
     font-weight: bold;
