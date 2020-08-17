@@ -76,18 +76,11 @@
             let _this = this;
             async function getJSON(req) {
                 let response = await fetch(req);
-                console.log(req);
                 let data = await response.json();
                 return data;
             }
             //对象数组排序方法
-            function sortNumber(p) {
-                return function (m, n) {
-                    var a = m[p];
-                    var b = n[p];
-                    return a - b;
-                };
-            }
+            const sortNumber = (p) => (m, n) => m[p] - n[p];
             let req = new Request(betitle.do + '/team/apply/infos', {
                 method: 'POST',
                 headers: {
