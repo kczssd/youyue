@@ -62,7 +62,7 @@ body {
 #load {
     width: 66px;
     margin: 0 auto;
-    margin-top: 275px;
+    margin-top: 304px;
     display: block;
 }
 .font9 {
