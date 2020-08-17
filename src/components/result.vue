@@ -2,9 +2,9 @@
     <div>
         <img v-if="isload" :src="loading" id="load" />
         <div v-else class="resultpage">
-            <!-- <div>{{'step：'+step}}</div>
-            <div>{{'state：'+final}}</div>
-            <div>{{resultList}}</div>-->
+            <div>{{'step(当前面试进度)：'+step}}</div>
+            <div>{{'state(是否为最终面)：'+final}}</div>
+            <div>{{resultList}}</div>
             <ul>
                 <li class="consequence" v-for="(items,index) in resultList">
                     <img :src="dpoint" />
@@ -129,6 +129,7 @@
             getJSON(req)
                 .then(function (resolve) {
                     let data = resolve.data;
+                    //判断方法1
                     _this.step = resolve.step; //当前面试阶段
                     _this.final = resolve.state; //判断当前是否为最终面试
                     data.map((item) => {

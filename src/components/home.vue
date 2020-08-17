@@ -1,7 +1,7 @@
 <template>
     <div>
-        <img v-if="isload" :src="loading" id="load" />
-        <div v-else class="homepage">
+        <!-- <img v-if="isload" :src="loading" id="load" /> -->
+        <div class="homepage">
             <header id="choose">
                 <span class="zuzhi" @click="titleactive=true" :id="titleactive?'font1b':null">组织选择</span>
                 <span class="yibao" @click="titleactive=false;" :id="!titleactive?'font1b':null">已报部门</span>
@@ -99,20 +99,19 @@
                     Authorization: 'Bearer ' + token,
                 },
             }); //获取组织信息
-            getJSON(req)
-                .then(function (resolve) {
-                    let data = resolve.data;
-                    data.forEach(function (item, index, arr) {
-                        if (item.id == 9) {
-                            arr.splice(index, 1);
-                            arr.unshift(item);
-                        }
-                    });
-                    _this.difList = data;
-                })
-                .then(function () {
-                    _this.isload = false;
+            getJSON(req).then(function (resolve) {
+                let data = resolve.data;
+                data.forEach(function (item, index, arr) {
+                    if (item.id == 9) {
+                        arr.splice(index, 1);
+                        arr.unshift(item);
+                    }
                 });
+                _this.difList = data;
+            });
+            // .then(function () {
+            //     _this.isload = false;
+            // });
             let myinfro = new Request(betitle.re + '/team/apply/login', {
                 method: 'GET',
                 headers: {
