@@ -60,10 +60,9 @@ body {
     background: #f6f6f9;
 }
 #load {
-    width: 136px;
-    height: 120px;
+    width: 66px;
     margin: 0 auto;
-    margin-top: 180px;
+    margin-top: 275px;
     display: block;
 }
 .font9 {
