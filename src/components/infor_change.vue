@@ -162,7 +162,7 @@
                     _this.chName(data.Name);
                     _this.chNum(data.StuNum);
                     _this.chphone(data.Phone);
-                    _this.chdepart(data.TeamName);
+                    _this.chdepart(data.TeamName.match('—') ? data.TeamName.split('—')[1] : data.TeamName);
                 })
                 .then(function () {
                     _this.isload = false;
