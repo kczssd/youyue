@@ -80,6 +80,14 @@
                 let data = await response.json();
                 return data;
             }
+            //对象数组排序方法
+            function sortNumber(p) {
+                return function (m, n) {
+                    var a = m[p];
+                    var b = n[p];
+                    return a - b;
+                };
+            }
             let req = new Request(betitle.do + '/team/apply/infos', {
                 method: 'POST',
                 headers: {
@@ -91,6 +99,9 @@
             getJSON(req)
                 .then(function (resolve) {
                     let data = resolve.data;
+                    if (_this.$route.query.departid == 37) {
+                        data.sort(sortNumber('id'));
+                    }
                     data = data.map((item) => {
                         return { id: item.id, name: item.name.match('—') ? item.name.split('—')[1] : item.name, detail: item.detail, avatar: item.avatar };
                     });
