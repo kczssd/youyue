@@ -4,7 +4,6 @@
             <router-link to="/">Home</router-link>|
             <router-link to="/infor">Infor</router-link>
         </div>-->
-        <div>{{token}}</div>
         <router-view />
     </div>
 </template>
