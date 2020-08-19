@@ -108,6 +108,13 @@
                             arr.unshift(item);
                         }
                     });
+                    var guoIndex = data.findIndex((v) => {
+                        return v.id == 7;
+                    });
+                    var eIndex = data.findIndex((v) => {
+                        return v.id == 75;
+                    });
+                    [data[guoIndex], data[eIndex]] = [data[eIndex], data[guoIndex]];
                     _this.difList = data;
                 })
                 .then(function () {
