@@ -2,7 +2,7 @@
     <div>
         <img v-if="isload" :src="loading" id="load" />
         <div v-else class="intropage">
-            <header class="choose font9">
+            <header @scroll="handleScroll" class="choose font9">
                 <ul id="container">
                     <li
                         class="difdeparts"
@@ -67,6 +67,17 @@
             toConfirm() {
                 let id = this.$route.query.departid; //组织id
                 this.$router.replace({ path: `/infor_confirm?id=${id}` }); //向报名信息确认页传入组织id
+            },
+            handleScroll(e) {
+                let chooseLeft = e.currentTarget.scrollLeft;
+                let chooseWidth = e.currentTarget.scrollWidth;
+                let nowChoose = document.querySelector('#introfont');
+                let width = nowChoose.offsetWidth;
+                if (nowChoose.offsetLeft + width / 2 < chooseLeft) {
+                    this.titleactive++;
+                } else if (nowChoose.offsetLeft + width / 2 > chooseLeft + window.innerWidth) {
+                    this.titleactive--;
+                }
             },
         },
         computed: {
