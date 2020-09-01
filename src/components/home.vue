@@ -207,23 +207,23 @@
 }
 .diffent {
     width: 355px;
-    height: 88px;
+    min-height: 88px;
     background: #ffffff;
     border-radius: 8px;
     margin-left: 10px;
     margin-top: 12px;
     position: relative;
     display: block;
+    overflow: hidden;
 }
 .diffent > h3 {
-    position: absolute;
-    left: 18px;
-    top: 24px;
+    margin-left: 18px;
+    margin-top: 24px;
 }
 .diffent > p {
-    position: absolute;
-    left: 18px;
-    bottom: 24px;
+    margin-left: 18px;
+    margin-top: 10px;
+    padding-bottom: 16px;
 }
 #point {
     position: absolute;
