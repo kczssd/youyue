@@ -197,21 +197,21 @@
     border-radius: 8px;
     margin: 12px auto;
     position: relative;
+    overflow: hidden;
 }
 .maincontent > h3 {
-    position: absolute;
-    left: 16px;
-    bottom: 153px;
+    margin-left: 16px;
+    margin-top: 22px;
 }
 .maincontent > p {
-    position: absolute;
-    left: 16px;
-    top: 250px;
+    margin-left: 16px;
+    margin-top: 7px;
+    margin-bottom: 20px;
 }
 .signin {
-    position: absolute;
-    top: 539px;
-    left: 98px;
+    margin-top: 66px;
+    margin-left: 98px;
+    margin-bottom: 20px;
     width: 180px;
     height: 44px;
     background: #625af8;
