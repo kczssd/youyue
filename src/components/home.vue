@@ -183,7 +183,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 14px;
+    line-height: 18px;
     letter-spacing: 0.02em;
     color: #777494;
 }
