@@ -175,6 +175,8 @@
     right: 72px;
 }
 .label {
+    width: 32px;
+    height: 16px;
     margin-left: 7px;
 }
 .homefont1 {
