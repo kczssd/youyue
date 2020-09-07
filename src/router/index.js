@@ -6,6 +6,7 @@ import Intro from '../views/Intro.vue'
 import Infor_confirm from '../views/Infor_confirm.vue'
 import Result from '../views/Result.vue'
 import Success from '../views/Success.vue'
+import Failure from '../views/Failure.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
     path: '/success',
     name: 'Success',
     component: Success,
+  },
+  {
+    path: '/failure',
+    name: 'Failure',
+    component: Failure,
   }
 ]
 

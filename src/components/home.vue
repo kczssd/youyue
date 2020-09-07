@@ -19,8 +19,14 @@
                 <ul>
                     <!-- 向部门介绍页传入组织id -->
                     <router-link :to="'/intro?departid='+item.id" class="diffent" v-for="(item,index) in difList" :key="item.id">
-                        <h3 class="homefont1">{{item.name}}</h3>
+                        <h3 class="homefont1">
+                            {{item.name}}
+                            <img class="label" v-if="item.type=='t'" :src="tuan" />
+                            <img class="label" v-else-if="item.type=='x'" :src="xue" />
+                            <img class="label" v-else-if="item.type=='y'" :src="yuan" />
+                        </h3>
                         <p class="homefont7">{{item.introduction}}</p>
+
                         <svg id="point" width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 opacity="0.6"
@@ -50,12 +56,14 @@
                     </li>
                 </ul>
             </main>
+            <div id="prompt" v-show="date<1600272000000">9月17号之后才开放报名途径哦！在此之前所有报名信息将视为无效信息！</div>
         </div>
     </div>
 </template>
 
 <script>
     import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
+    import resetdata from '@/assets/js/resetdata.js';
     let betitle = process.env.NODE_ENV == 'development' ? { do: '/domain', re: '/redomain' } : { do: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter', re: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply' };
     let token = localStorage.getItem('young-youyue-token');
     export default {
@@ -71,8 +79,12 @@
                 ],
                 point: require('@/assets/img/point.png'),
                 loading: require('@/assets/img/loading.gif'),
+                tuan: require('@/assets/img/tuan.png'),
+                xue: require('@/assets/img/xue.png'),
+                yuan: require('@/assets/img/yuan.png'),
                 isload: true,
                 titleactive: true,
+                date: new Date().getTime(),
             };
         },
         methods: {
@@ -86,7 +98,11 @@
         },
         mounted: function () {
             let _this = this; //拿到data中的数据
-
+            if (_this.date < 1600272000000) {
+                setTimeout(() => {
+                    document.querySelector('#prompt').style.display = 'none';
+                }, 2000);
+            }
             async function getJSON(req) {
                 let response = await fetch(req);
                 let data = await response.json();
@@ -102,19 +118,7 @@
             getJSON(req)
                 .then(function (resolve) {
                     let data = resolve.data;
-                    data.forEach(function (item, index, arr) {
-                        if (item.id == 9) {
-                            arr.splice(index, 1);
-                            arr.unshift(item);
-                        }
-                    });
-                    var guoIndex = data.findIndex((v) => {
-                        return v.id == 7;
-                    });
-                    var eIndex = data.findIndex((v) => {
-                        return v.id == 75;
-                    });
-                    [data[guoIndex], data[eIndex]] = [data[eIndex], data[guoIndex]];
+                    data = resetdata(data);
                     _this.difList = data;
                 })
                 .then(function () {
@@ -170,6 +174,9 @@
     left: 235px;
     right: 72px;
 }
+.label {
+    margin-left: 7px;
+}
 .homefont1 {
     font-family: PingFang SC;
     font-style: normal;
@@ -219,6 +226,8 @@
 .diffent > h3 {
     margin-left: 18px;
     margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
 }
 .diffent > p {
     margin-left: 18px;
@@ -296,5 +305,22 @@
 .ban {
     color: #cdcce0;
     border: 1px solid #cdcce0;
+}
+#prompt {
+    z-index: 1000;
+    position: fixed;
+    top: 300px;
+    left: 53px;
+    width: 269px;
+    height: 60px;
+    background-color: #f6f6f9;
+    border-radius: 5px;
+    border: 1px solid #cdcce0;
+    display: flex;
+    align-items: center;
+    font-family: PingFang SC;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 22px;
 }
 </style>

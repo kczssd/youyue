@@ -194,6 +194,8 @@
                     .then((data) => {
                         if (data.status == 10000) {
                             this.$router.replace({ path: '/success' });
+                        } else if (data.status == 10013) {
+                            this.$router.replace({ path: '/failure' });
                         }
                     }); //若提交成功则返回报名成功页
             },

@@ -46,6 +46,7 @@
 
 <script>
     import { mapGetters } from 'vuex';
+    import resetdepart from '@/assets/js/resetdepart.js';
     let betitle = process.env.NODE_ENV == 'development' ? { do: '/domain', re: '/redomain' } : { do: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter', re: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply' };
     let token = localStorage.getItem('young-youyue-token');
     export default {
@@ -90,8 +91,6 @@
                 let data = await response.json();
                 return data;
             }
-            //对象数组排序方法
-            const sortNumber = (p) => (m, n) => m[p] - n[p];
             let req = new Request(betitle.do + '/team/apply/infos', {
                 method: 'POST',
                 headers: {
@@ -103,9 +102,7 @@
             getJSON(req)
                 .then(function (resolve) {
                     let data = resolve.data;
-                    if (_this.$route.query.departid == 37) {
-                        data.sort(sortNumber('id'));
-                    }
+                    data = resetdepart(data, _this.$route.query.departid);
                     data = data.map((item) => {
                         return { id: item.id, name: item.name.match('—') ? item.name.split('—')[1] : item.name, detail: item.detail, avatar: item.avatar };
                     });
