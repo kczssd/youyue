@@ -136,7 +136,7 @@
                 ],
                 point: require('@/assets/img/point.png'),
                 loading: require('@/assets/img/loading.gif'),
-                prompt: require('@/assets/img/prompt.png'),
+                prompt: require('@/assets/img/prompt2.png'),
                 isload: true,
                 titleactive: true,
                 iscover: true,
@@ -174,12 +174,12 @@
                 })
                 .then(function () {
                     _this.isload = false;
-                    if (_this.date < 1600272000000) {
-                        setTimeout(() => {
-                            document.querySelector('#prompt').style.display = 'none';
-                            _this.iscover = false;
-                        }, 2000);
-                    }
+                    // if (_this.date < 1600272000000) {
+                    //     setTimeout(() => {
+                    //         document.querySelector('#prompt').style.display = 'none';
+                    //         _this.iscover = false;
+                    //     }, 2000);
+                    // }
                 });
             let myinfro = new Request(betitle.re + '/team/apply/login', {
                 method: 'GET',
@@ -380,7 +380,7 @@
 #prompt {
     z-index: 1000;
     position: fixed;
-    top: 300px;
+    top: 227.5px;
     left: 60px;
     width: 255px;
     height: 212px;
