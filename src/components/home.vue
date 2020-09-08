@@ -136,9 +136,6 @@
                 ],
                 point: require('@/assets/img/point.png'),
                 loading: require('@/assets/img/loading.gif'),
-                tuan: require('@/assets/img/tuan.png'),
-                xue: require('@/assets/img/xue.png'),
-                yuan: require('@/assets/img/yuan.png'),
                 prompt: require('@/assets/img/prompt.png'),
                 isload: true,
                 titleactive: true,
@@ -157,11 +154,6 @@
         },
         mounted: function () {
             let _this = this; //拿到data中的数据
-            // if (_this.date < 1600272000000) {
-            //     setTimeout(() => {
-            //         document.querySelector('#prompt').style.display = 'none';
-            //     }, 2000);
-            // }
             async function getJSON(req) {
                 let response = await fetch(req);
                 let data = await response.json();
