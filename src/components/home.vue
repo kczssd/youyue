@@ -396,6 +396,8 @@
     line-height: 24px;
 }
 #proimg {
+    width: 115px;
+    height: 92px;
     margin: 20px auto;
     display: block;
 }
