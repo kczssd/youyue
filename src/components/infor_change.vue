@@ -341,7 +341,7 @@
     font-weight: bold;
 }
 .cover {
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     background: rgba(0, 0, 0, 0.25);
