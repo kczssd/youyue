@@ -105,6 +105,7 @@
 
 <script>
     import { mapMutations } from 'vuex';
+    import resetdepart from '@/assets/js/resetdepart.js';
     let betitle =
         process.env.NODE_ENV == 'development'
             ? { do: '/domain', re: '/redomain' }
@@ -222,6 +223,7 @@
             }); //拿到组织旗下部门列表
             getJSON(req).then(function (resolve) {
                 let data = resolve.data;
+                data = resetdepart(data, _this.$route.query.id);
                 data.forEach((item) => {
                     _this.departList.push({
                         id: item.id,
