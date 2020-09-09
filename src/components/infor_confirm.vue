@@ -100,6 +100,13 @@
                 <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
             </div>
         </div>
+        <div>
+            <div class="cover" v-show="secover"></div>
+            <div id="prompt">
+                <img :src="prompt" id="proimg" />
+                <p>未到报名时间</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -122,10 +129,12 @@
             return {
                 isphone: true,
                 iscover: false,
+                secover: false,
                 isconfirm: false,
                 inforList: this.$store.state.inforList,
                 nowChosen: [],
                 nowphone: '',
+                date: new Date().getTime(),
                 departList: [
                     //组织部门列表
                     // { id: 1, name: '产品运营及策划部', ischoose: false },
@@ -136,6 +145,7 @@
                 ],
                 union: require('@/assets/img/union.png'),
                 close: require('@/assets/img/close.png'),
+                prompt: require('@/assets/img/prompt.png'),
             };
         },
         methods: {
@@ -151,6 +161,12 @@
                 await (this.isphone = !this.isphone);
                 await document.querySelector('#contentPhone').focus();
             },
+            async showprompt() {
+                await setTimeout(() => {
+                    document.querySelector('#prompt').style.display = 'none';
+                    this.secover = false;
+                }, 3000);
+            },
             isempty() {
                 if (this.nowphone.length == 0) {
                     this.isphone = !this.isphone;
@@ -161,10 +177,25 @@
                 this.isconfirm = !this.isconfirm;
             },
             chConfirm() {
-                if (this.nowChosen.length != 0 && this.nowphone.length == 11) this.isconfirm = !this.isconfirm;
+                if (this.nowChosen.length != 0 && this.nowphone.length == 11)
+                    if (this.date < 1600272000000) {
+                        this.chClose();
+                        document.querySelector('#prompt').style.display = 'block';
+                        this.secover = true;
+                        this.showprompt();
+                    } else {
+                        this.isconfirm = !this.isconfirm;
+                    }
             },
             chCover() {
-                if (this.nowChosen.length != 0 && this.nowphone.length == 11) this.iscover = !this.iscover;
+                if (this.nowChosen.length != 0 && this.nowphone.length == 11)
+                    if (this.date < 1600272000000) {
+                        document.querySelector('#prompt').style.display = 'block';
+                        this.secover = true;
+                        this.showprompt();
+                    } else {
+                        this.iscover = !this.iscover;
+                    }
             },
             chClose() {
                 this.iscover = false;
@@ -203,7 +234,7 @@
         },
         computed: {
             style: function () {
-                return this.nowphone.length != 11 || this.nowChosen.length == 0 ? 'styleDis' : 'stylebutton';
+                return this.nowphone.length != 11 || this.nowChosen.length == 0 || this.date < 1600272000000 ? 'styleDis' : 'stylebutton';
             },
         },
         mounted: function () {
@@ -320,7 +351,29 @@
 #coulcontainer::-webkit-scrollbar {
     display: none;
 }
-/* #coul {
-    float: left;
-} */
+#prompt {
+    z-index: 1000;
+    position: fixed;
+    top: 227.5px;
+    left: 60px;
+    width: 255px;
+    height: 212px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: none;
+}
+#prompt > p {
+    text-align: center;
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+#proimg {
+    width: 115px;
+    height: 92px;
+    margin: 20px auto;
+    display: block;
+}
 </style>

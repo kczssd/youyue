@@ -107,13 +107,6 @@
                     </li>
                 </ul>
             </main>
-            <div v-show="date<1600272000000">
-                <div class="cover" v-show="iscover"></div>
-                <div id="prompt">
-                    <img :src="prompt" id="proimg" />
-                    <p>9月17号之后才开放报名途径哦！在此之前所有报名信息将视为无效信息！</p>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -136,11 +129,9 @@
                 ],
                 point: require('@/assets/img/point.png'),
                 loading: require('@/assets/img/loading.gif'),
-                prompt: require('@/assets/img/prompt.png'),
                 isload: true,
                 titleactive: true,
                 iscover: true,
-                date: new Date().getTime(),
             };
         },
         methods: {
@@ -174,12 +165,6 @@
                 })
                 .then(function () {
                     _this.isload = false;
-                    if (_this.date < 1600272000000) {
-                        setTimeout(() => {
-                            document.querySelector('#prompt').style.display = 'none';
-                            _this.iscover = false;
-                        }, 3000);
-                    }
                 });
             let myinfro = new Request(betitle.re + '/team/apply/login', {
                 method: 'GET',
@@ -376,29 +361,5 @@
 .ban {
     color: #cdcce0;
     border: 1px solid #cdcce0;
-}
-#prompt {
-    z-index: 1000;
-    position: fixed;
-    top: 227.5px;
-    left: 60px;
-    width: 255px;
-    height: 212px;
-    background-color: #ffffff;
-    border-radius: 10px;
-}
-#prompt > p {
-    margin: 0 20px;
-    font-family: PingFang SC;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-}
-#proimg {
-    width: 115px;
-    height: 92px;
-    margin: 20px auto;
-    display: block;
 }
 </style>
