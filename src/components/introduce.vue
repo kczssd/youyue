@@ -39,7 +39,14 @@
                 <p class="infont7">{{difdepartsList[titleactive].detail}}</p>
             </main>
             <!-- 手动跳转 -->
-            <button @click="toConfirm" class="signin">立即报名</button>
+            <button @click="toConfirm" :class="style">立即报名</button>
+            <div>
+                <div class="cover" v-show="secover"></div>
+                <div id="prompt">
+                    <img :src="prompt" id="proimg" />
+                    <p>未到报名时间</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -58,16 +65,31 @@
                 ],
                 titleactive: 0,
                 loading: require('@/assets/img/loading.gif'),
+                prompt: require('@/assets/img/prompt.png'),
                 isload: true,
+                secover: false,
+                date: new Date().getTime(),
             };
         },
         methods: {
             reactive(index) {
                 this.titleactive = index;
             },
+            async showprompt() {
+                await setTimeout(() => {
+                    document.querySelector('#prompt').style.display = 'none';
+                    this.secover = false;
+                }, 2000);
+            },
             toConfirm() {
-                let id = this.$route.query.departid; //组织id
-                this.$router.replace({ path: `/infor_confirm?id=${id}` }); //向报名信息确认页传入组织id
+                if (this.date < 1600272000000) {
+                    document.querySelector('#prompt').style.display = 'block';
+                    this.secover = true;
+                    this.showprompt();
+                } else {
+                    let id = this.$route.query.departid; //组织id
+                    this.$router.replace({ path: `/infor_confirm?id=${id}` }); //向报名信息确认页传入组织id
+                }
             },
             handleScroll(e) {
                 let chooseLeft = e.currentTarget.scrollLeft;
@@ -82,7 +104,9 @@
             },
         },
         computed: {
-            // ...mapGetters(['showAll']),
+            style: function () {
+                return this.date < 1600272000000 ? 'signDis' : 'signin';
+            },
         },
         mounted: function () {
             let _this = this;
@@ -219,5 +243,45 @@
     line-height: 18px;
     letter-spacing: 0.1em;
     color: #ffffff;
+}
+.signDis {
+    margin-top: 66px;
+    margin-left: 98px;
+    margin-bottom: 20px;
+    width: 180px;
+    height: 44px;
+    background-color: #cecde8;
+    border-radius: 32px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+}
+#prompt {
+    z-index: 1000;
+    position: fixed;
+    top: 227.5px;
+    left: 60px;
+    width: 255px;
+    height: 212px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: none;
+}
+#prompt > p {
+    text-align: center;
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+#proimg {
+    width: 115px;
+    height: 92px;
+    margin: 20px auto;
+    display: block;
 }
 </style>
