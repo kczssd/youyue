@@ -183,7 +183,9 @@
                 } catch (e) {}
             },
             sendJSON(array, phone) {
+                let id = this.$route.query.id;
                 fetch(betitle.re + '/team/apply/register', {
+                    // https://run.mocky.io/v3/5e9dffe1-709c-4996-b5f4-c2545923e912
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -194,7 +196,7 @@
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.status == 10000) {
-                            this.$router.replace({ path: '/success' });
+                            this.$router.replace({ path: `/success?id=${id}` });
                         } else if (data.status == 10013) {
                             this.$router.replace({ path: '/failure' });
                         }

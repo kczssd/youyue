@@ -1,5 +1,6 @@
 <template>
     <div class="successpage">
+        <!-- <img class="iconsuc" :src="chooseImg()" /> -->
         <img class="iconsuc" :src="success" />
         <p class="p1 font7">恭喜你！报名成功！</p>
         <p class="p2 font7">记得及时查询录取结果哦</p>
@@ -11,9 +12,14 @@
         data() {
             return {
                 success: require('@/assets/img/iconsuc.png'),
+                // RedRock: require(),
             };
         },
-        methods: {},
+        // methods: {
+        //     chooseImg() {
+        //         return this.$route.query.id == 9 ? this.RedRock : this.success;
+        //     },
+        // },
         computed: {},
     };
 </script>
