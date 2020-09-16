@@ -1,9 +1,15 @@
 <template>
     <div class="successpage">
-        <!-- <img class="iconsuc" :src="chooseImg()" /> -->
-        <img class="iconsuc" :src="success" />
-        <p class="p1 font7">恭喜你！报名成功！</p>
-        <p class="p2 font7">记得及时查询录取结果哦</p>
+        <div v-if="id==9" class="redsuc">
+            <img class="iconred" :src="RedRock" />
+            <p class="p1 font7">欢迎加入红岩网校！</p>
+            <p class="p2 font7">记得及时查询录取结果哦</p>
+        </div>
+        <div v-else class="othsuc">
+            <img class="iconoth" :src="success" />
+            <p class="p1 font7">恭喜你！报名成功！</p>
+            <p class="p2 font7">记得及时查询录取结果哦</p>
+        </div>
     </div>
 </template>
 
@@ -12,14 +18,10 @@
         data() {
             return {
                 success: require('@/assets/img/iconsuc.png'),
-                // RedRock: require(),
+                RedRock: require('@/assets/img/RedRock.png'),
+                id: this.$route.query.id,
             };
         },
-        // methods: {
-        //     chooseImg() {
-        //         return this.$route.query.id == 9 ? this.RedRock : this.success;
-        //     },
-        // },
         computed: {},
     };
 </script>
@@ -28,10 +30,15 @@
 .successpage {
     position: relative;
 }
-.iconsuc {
+.iconoth {
     position: absolute;
     left: 77px;
     top: -64px;
+}
+.iconred {
+    position: absolute;
+    left: 80px;
+    top: 30px;
 }
 .p1 {
     position: absolute;
