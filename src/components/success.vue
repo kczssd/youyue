@@ -17,8 +17,8 @@
     export default {
         data() {
             return {
-                success: require('@/assets/img/iconsuc.png'),
-                RedRock: require('@/assets/img/RedRock.png'),
+                success: require('@/assets/img/iconsuc.svg'),
+                RedRock: require('@/assets/img/RedRock.svg'),
                 id: this.$route.query.id,
             };
         },
@@ -28,14 +28,21 @@
 
 <style>
 .successpage {
+    width: 375px;
+    height: 667px;
     position: relative;
+    background: #ffffff;
 }
 .iconoth {
+    width: 194px;
+    height: 580px;
     position: absolute;
     left: 77px;
     top: -64px;
 }
 .iconred {
+    width: 216px;
+    height: 214px;
     position: absolute;
     left: 80px;
     top: 30px;
