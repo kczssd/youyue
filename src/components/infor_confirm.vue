@@ -1,103 +1,106 @@
 <template>
-    <div v-if="departList!=undefined" class="infor_confirm">
-        <div id="afterChange">
-            <div class="unchangeInfor font7">
-                <div :class="'un'+items.classname" v-for="(items,index) in inforList.slice(0,2)">
-                    {{items.name}}
-                    <span class="unfont font1">{{items.data}}</span>
-                </div>
-            </div>
-            <div class="chphoneInfor font7">
-                <div class="chphone">
-                    联系电话
-                    <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span>
-                    <input
-                        v-else
-                        id="contentPhone"
-                        class="chfont font1"
-                        type="number"
-                        pattern="[0-9]*"
-                        @blur="isempty"
-                        @keyup="chphone(nowphone)"
-                        v-model="nowphone"
-                        oninput="value=value.replace(/[^\d]/g,'');value.length>11?value=value.slice(0,11):value"
-                    />
-                </div>
-            </div>
-            <div class="chdepartInfor font7">
-                <div class="chdepart">
-                    报名部门
-                    <div @click="chAll" id="contentdepart" class="defont">
-                        <p class="font9s" v-if="nowChosen.length==0">请选择报名部门</p>
-                        <p class="font1" v-else v-for="(item) in nowChosen">{{item}}</p>
-                        <img :src="union" id="union" />
+    <div>
+        <img v-if="isload" :src="loading" id="load" />
+        <div v-else class="infor_confirm">
+            <div id="afterChange">
+                <div class="unchangeInfor font7">
+                    <div :class="'un'+items.classname" v-for="(items,index) in inforList.slice(0,2)">
+                        {{items.name}}
+                        <span class="unfont font1">{{items.data}}</span>
                     </div>
                 </div>
-            </div>
-            <!-- 选择部门 -->
-            <button id="confirmMyInfor" @click="chCover" :class="style">确认提交</button>
-            <!-- 蒙版 -->
-            <div class="cover" v-show="iscover"></div>
-            <div class="departments font4" :class="isconfirm?'show':null">
-                <div id="title">选择部门</div>
-                <p>可以选择多个部门</p>
-                <div id="coulcontainer">
-                    <ul id="coul">
-                        <li class="department" v-for="(items,index) in departList" :id="'department'+index">
-                            {{items.name}}
-                            <!-- <img @click="chChoose(index)" :src="items.ischoose?haschoose:nochoose" /> -->
-                            <svg
-                                @click="chChoose(index)"
-                                v-if="items.ischoose"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#625AF8" stroke="#625AF8" />
-                                <path
-                                    d="M6 10.5L9 13.5L14.5 8"
-                                    stroke="white"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                            <svg
-                                @click="chChoose(index)"
-                                v-else
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#A4A3B7" />
-                            </svg>
+                <div class="chphoneInfor font7">
+                    <div class="chphone">
+                        联系电话
+                        <span v-if="isphone" @click="chinput" class="font9s" style="margin-right:16px">请填写电话号码</span>
+                        <input
+                            v-else
+                            id="contentPhone"
+                            class="chfont font1"
+                            type="number"
+                            pattern="[0-9]*"
+                            @blur="isempty"
+                            @keyup="chphone(nowphone)"
+                            v-model="nowphone"
+                            oninput="value=value.replace(/[^\d]/g,'');value.length>11?value=value.slice(0,11):value"
+                        />
+                    </div>
+                </div>
+                <div class="chdepartInfor font7">
+                    <div class="chdepart">
+                        报名部门
+                        <div @click="chAll" id="contentdepart" class="defont">
+                            <p class="font9s" v-if="nowChosen.length==0">请选择报名部门</p>
+                            <p class="font1" v-else v-for="(item) in nowChosen">{{item}}</p>
+                            <img :src="union" id="union" />
+                        </div>
+                    </div>
+                </div>
+                <!-- 选择部门 -->
+                <button id="confirmMyInfor" @click="chCover" :class="style">确认提交</button>
+                <!-- 蒙版 -->
+                <div class="cover" v-show="iscover"></div>
+                <div class="departments font4" :class="isconfirm?'show':null">
+                    <div id="title">选择部门</div>
+                    <p>可以选择多个部门</p>
+                    <div id="coulcontainer">
+                        <ul id="coul">
+                            <li class="department" v-for="(items,index) in departList" :id="'department'+index">
+                                {{items.name}}
+                                <!-- <img @click="chChoose(index)" :src="items.ischoose?haschoose:nochoose" /> -->
+                                <svg
+                                    @click="chChoose(index)"
+                                    v-if="items.ischoose"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" fill="#625AF8" stroke="#625AF8" />
+                                    <path
+                                        d="M6 10.5L9 13.5L14.5 8"
+                                        stroke="white"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                                <svg
+                                    @click="chChoose(index)"
+                                    v-else
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#A4A3B7" />
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                    <img @click="chClose" id="close" :src="close" alt />
+                    <button @click="chConfirm" id="confirmDepart" :class="style">确认提交</button>
+                </div>
+                <div class="confirm" :class="!isconfirm&&iscover?'show':null">
+                    <div id="cotitle">信息核对</div>
+                    <ul class="coinfors">
+                        <li class="coinfor font7" v-for="(items,index) in inforList.slice(0,3)">
+                            {{items.name+'：'}}
+                            <span class="font1 cofont">{{items.data}}</span>
+                        </li>
+                        <li class="coinfor font7">
+                            <span style="white-space: nowrap;">{{inforList[3].name+'：'}}</span>
+                            <div class="inforlist">
+                                <span class="font1 cofont" v-for="item in nowChosen">{{item}}</span>
+                            </div>
                         </li>
                     </ul>
+                    <img @click="chClose" id="close" :src="close" />
+                    <!-- 手动跳转 -->
+                    <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
                 </div>
-                <img @click="chClose" id="close" :src="close" alt />
-                <button @click="chConfirm" id="confirmDepart" :class="style">确认提交</button>
-            </div>
-            <div class="confirm" :class="!isconfirm&&iscover?'show':null">
-                <div id="cotitle">信息核对</div>
-                <ul class="coinfors">
-                    <li class="coinfor font7" v-for="(items,index) in inforList.slice(0,3)">
-                        {{items.name+'：'}}
-                        <span class="font1 cofont">{{items.data}}</span>
-                    </li>
-                    <li class="coinfor font7">
-                        <span style="white-space: nowrap;">{{inforList[3].name+'：'}}</span>
-                        <div class="inforlist">
-                            <span class="font1 cofont" v-for="item in nowChosen">{{item}}</span>
-                        </div>
-                    </li>
-                </ul>
-                <img @click="chClose" id="close" :src="close" />
-                <!-- 手动跳转 -->
-                <button @click="chosenList" id="lastconfirm" :class="style">确认提交</button>
             </div>
         </div>
     </div>
@@ -123,6 +126,7 @@
                 isphone: true,
                 iscover: false,
                 isconfirm: false,
+                isload: true,
                 inforList: this.$store.state.inforList,
                 nowChosen: [],
                 nowphone: '',
@@ -136,6 +140,7 @@
                 ],
                 union: require('@/assets/img/union.png'),
                 close: require('@/assets/img/close.png'),
+                loading: require('@/assets/img/loading.gif'),
             };
         },
         methods: {
@@ -184,6 +189,7 @@
             },
             sendJSON(array, phone) {
                 let id = this.$route.query.id;
+                this.isload = true;
                 fetch(betitle.re + '/team/apply/register', {
                     // https://run.mocky.io/v3/5e9dffe1-709c-4996-b5f4-c2545923e912
                     method: 'POST',
@@ -233,6 +239,7 @@
                         ischoose: false,
                     }); //组织id
                 });
+                _this.isload = false;
             });
         },
     };
