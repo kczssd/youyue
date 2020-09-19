@@ -190,6 +190,7 @@
             sendJSON(array, phone) {
                 let id = this.$route.query.id;
                 this.isload = true;
+                console.log('token', token)
                 fetch(betitle.re + '/team/apply/register', {
                     // https://run.mocky.io/v3/5e9dffe1-709c-4996-b5f4-c2545923e912
                     method: 'POST',
@@ -206,6 +207,7 @@
                         } else if (data.status == 10013) {
                             this.$router.replace({ path: '/failure' });
                         }
+                        console.log('endend')
                     }); //若提交成功则返回报名成功页
             },
         },
