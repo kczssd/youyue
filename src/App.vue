@@ -22,6 +22,7 @@
         computed: {},
         beforeMount: function () {
             this.href = location.href;
+            console.log('href', location.href)
             let { t } = qs.parse(location.href.split('?')[1].split('#')[0]);
             // let token = decodeURIComponent(
             //   location.href.split("&")[0].split("?t=")[1]
