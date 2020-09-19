@@ -119,7 +119,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + localStorage.getItem('young-youyue-token'),
                 },
                 body: `{"id":${this.$route.query.departid}}`,
             }); //获取组织的部门信息
