@@ -151,7 +151,6 @@
     import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
     import resetdata from '@/assets/js/resetdata.js';
     let betitle = process.env.NODE_ENV == 'development' ? { do: '/domain', re: '/redomain' } : { do: 'https://cyxbsmobile.redrock.team/wxapi/cyb-permissioncenter', re: 'https://cyxbsmobile.redrock.team/wxapi/cyb-teamapply' };
-    let token = localStorage.getItem('young-youyue-token');
     export default {
         data() {
             return {
@@ -190,7 +189,7 @@
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + localStorage.getItem('young-youyue-token'),
                 },
             }); //获取组织信息
             getJSON(req)
@@ -206,7 +205,7 @@
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + localStorage.getItem('young-youyue-token'),
                 },
             }); //获取已报部门信息
             getJSON(myinfro).then(function (resolve) {

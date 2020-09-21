@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import './assets/font/font.css';
 
+import './sentry'
+
 Vue.config.productionTip = false
 
 new Vue({

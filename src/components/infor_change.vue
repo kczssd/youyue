@@ -124,7 +124,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: 'Bearer ' + token,
+                        Authorization: 'Bearer ' + localStorage.getItem('young-youyue-token'),
                     },
                     body: `{"phone":"${phone}","id":${index}}`,
                 }) //提交报名信息
@@ -152,7 +152,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + localStorage.getItem('young-youyue-token'),
                 },
                 body: `{"id":${this.$route.query.id}}`,
             }); //获取用户个人后台信息
