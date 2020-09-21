@@ -46,6 +46,10 @@
                     <img :src="prompt" id="proimg" />
                     <p>未到报名时间</p>
                 </div>
+                <div id="dead-prompt">
+                    <img :src="prompt" id="proimg" />
+                    <p>报名时间已截止哦</p>
+                </div>
             </div>
         </div>
     </div>
@@ -69,26 +73,44 @@
                 isload: true,
                 secover: false,
                 date: new Date().getTime(),
+                deadline: this.$store.state.Deadline,
+                departid: this.$route.query.departid,
+                deadtime: 3376656000000,
             };
         },
         methods: {
+            // isDeadline() {
+            //     this.Deadline.Foreach((depart) => {
+            //         if (depart.id == this.departid && this.date > depart.time) {
+            //             return true;
+            //         }
+            //     });
+            //     return false;
+            // },
             reactive(index) {
                 this.titleactive = index;
             },
-            async showprompt() {
+            async showprompt(element) {
                 await setTimeout(() => {
-                    document.querySelector('#prompt').style.display = 'none';
+                    element.style.display = 'none';
                     this.secover = false;
                 }, 2000);
             },
             toConfirm() {
-                if (this.date < 1600272000000) {
-                    document.querySelector('#prompt').style.display = 'block';
-                    this.secover = true;
-                    this.showprompt();
-                } else {
-                    let id = this.$route.query.departid; //组织id
-                    this.$router.replace({ path: `/infor_confirm?id=${id}` }); //向报名信息确认页传入组织id
+                switch (true) {
+                    case this.date < 1600272000000:
+                        document.querySelector('#prompt').style.display = 'block';
+                        this.secover = true;
+                        this.showprompt(document.querySelector('#prompt'));
+                        break;
+                    case this.date > this.deadtime:
+                        document.querySelector('#dead-prompt').style.display = 'block';
+                        this.secover = true;
+                        this.showprompt(document.querySelector('#dead-prompt'));
+                        break;
+                    default:
+                        let id = this.$route.query.departid; //组织id
+                        this.$router.replace({ path: `/infor_confirm?id=${id}` }); //向报名信息确认页传入组织id
                 }
             },
             handleScroll(e) {
@@ -105,11 +127,18 @@
         },
         computed: {
             style: function () {
-                return this.date < 1600272000000 ? 'signDis' : 'signin';
+                return this.date < 1600272000000 || this.date > this.deadtime ? 'signDis' : 'signin';
             },
         },
         mounted: function () {
             let _this = this;
+            console.log(this.deadtime);
+            this.deadline.forEach((depart) => {
+                if (this.departid == depart.id) {
+                    this.deadtime = depart.time;
+                }
+            });
+            console.log(this.departid, this.deadtime);
             async function getJSON(req) {
                 let response = await fetch(req);
                 let data = await response.json();
@@ -259,7 +288,8 @@
     letter-spacing: 0.1em;
     color: #ffffff;
 }
-#prompt {
+#prompt,
+#dead-prompt {
     z-index: 1000;
     position: fixed;
     top: 227.5px;
@@ -270,7 +300,8 @@
     border-radius: 10px;
     display: none;
 }
-#prompt > p {
+#prompt,
+#dead-prompt > p {
     text-align: center;
     font-family: PingFang SC;
     font-style: normal;
