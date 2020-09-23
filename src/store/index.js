@@ -18,7 +18,7 @@ export default new Vuex.Store({
       { name: '联系电话', data: undefined, classname: 'phone' },
       { name: '报名部门', data: undefined, classname: 'department' },
     ],
-    Deadline: [{ id: 9, time: 1600826400000 }]
+    Deadline: [{ id: 9, time: 1600826400000 }, { id: 47, time: 1600870261000 }, { id: 70, time: 1600870261000 }]
   },
   getters: {
     // showList: state => {
