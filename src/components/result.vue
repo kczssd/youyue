@@ -154,12 +154,12 @@
 <style>
 .consequence {
     width: 355px;
-    height: 325px;
+    min-height: 325px;
     margin: 12px auto 32px;
 }
 .contentres {
     width: 355px;
-    height: 299px;
+    min-height: 299px;
     margin-top: 8px;
     background: #ffffff;
     border-radius: 8px;
@@ -212,9 +212,12 @@
     line-height: 28px;
     letter-spacing: 0.03em;
     color: #777494;
-    position: absolute;
-    top: 148px;
-    left: 27px;
+    padding-top: 148px;
+    margin-left: 27px;
+    padding-bottom: 20px;
+    /* position: absolute; */
+    /* top: 148px;
+    left: 27px; */
 }
 .tifont {
     font-family: PingFang SC;
@@ -232,6 +235,7 @@
 }
 .approve {
     position: absolute;
+    top: 0;
     right: 0;
 }
 </style>
